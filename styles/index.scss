@@ -2,7 +2,7 @@
 @import "card" ;
 @import "dropdown" ;
 @import "tag" ;
-
+@import "search-bar" ;
 
 header {
 
@@ -22,10 +22,22 @@ header {
     }
 }
 
+main {
+    margin: 2em 1em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
 
 
 .tags {
     display: flex;
     flex-direction: wrap;
     gap: 1em;
+}
+
+.cards {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
