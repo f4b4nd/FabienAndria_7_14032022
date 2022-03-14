@@ -1,3 +1,40 @@
+.tag {
+
+    min-height: 40px;
+    padding: 1em;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+
+    .text {
+        color: white;
+        font-weight: bold;
+    }
+
+    .icon {
+        border: 2px solid white;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .fa-xmark {
+            color: white;
+            font-size: 0.9em;
+            line-height: 10%;
+        }
+    }
+
+
+}
+
 .tag-primary {
     background-color: $blue;
 }

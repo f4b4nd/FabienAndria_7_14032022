@@ -5,6 +5,10 @@
 @import "tag" ;
 @import "search-bar" ;
 
+body {
+    font-family: 'Lato', sans-serif;
+}
+
 header {
 
     display: flex;
@@ -41,6 +45,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+
 
 
 @media screen and (max-width: $sm-maxwidth) {

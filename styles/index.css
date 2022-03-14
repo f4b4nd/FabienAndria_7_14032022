@@ -110,6 +110,7 @@ button {
 
 .card__body__text .description p {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -166,6 +167,51 @@ button {
   background-color: #ED6454;
 }
 
+.tag {
+  min-height: 40px;
+  padding: 1em;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+}
+
+.tag .text {
+  color: white;
+  font-weight: bold;
+}
+
+.tag .icon {
+  border: 2px solid white;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tag .icon .fa-xmark {
+  color: white;
+  font-size: 0.9em;
+  line-height: 10%;
+}
+
 .tag-primary {
   background-color: #3282F7;
 }
@@ -208,6 +254,10 @@ button {
 
 .search-bar .fa-search {
   font-size: 1.5em;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
 }
 
 header {
