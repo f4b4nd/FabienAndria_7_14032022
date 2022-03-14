@@ -1,3 +1,4 @@
+@import "reset" ;
 @import "constants" ;
 @import "card" ;
 @import "dropdown" ;
@@ -23,7 +24,7 @@ header {
 }
 
 main {
-    margin: 2em 1em;
+    margin: 2em 100px;
     display: flex;
     flex-direction: column;
     row-gap: 1em;
@@ -37,7 +38,18 @@ main {
 }
 
 .cards {
-    margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+}
+
+
+@media screen and (max-width: $sm-maxwidth) {
+    main {
+        margin: 2em 1em;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    
 }

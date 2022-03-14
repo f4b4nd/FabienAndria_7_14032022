@@ -1,0 +1,36 @@
+/*RESET*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input {
+    border: none;
+}
+
+button {
+    border: none;
+}

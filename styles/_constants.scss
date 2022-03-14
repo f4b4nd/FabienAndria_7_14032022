@@ -3,3 +3,10 @@ $green: #68D9A4 ;
 $red : #ED6454 ;
 $light-grey : #E7E7E7 ;
 $dark-grey : #C7BEBE ;
+
+
+// BREAKPOINTS
+$lg-minwidth : 992px;
+$md-maxwidth : $lg-minwidth - 1px;
+$md-minwidth : 768px;
+$sm-maxwidth : $md-minwidth - 1px;
