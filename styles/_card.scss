@@ -27,6 +27,11 @@
     justify-content: space-between;
     align-items: center;
 
+
+    .fa-clock {
+        color: black;
+    }
+
     .recipe-time__value {
         font-weight: bold;
     }
@@ -73,6 +78,8 @@
         flex-wrap: wrap;
         justify-content: flex-start;
         column-gap: 5px;
+        
+        font-size: 0.9em;
     
         .ingredient__label {
             font-weight: bold;
