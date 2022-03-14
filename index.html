@@ -4,10 +4,151 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title> Les petits plats </title>
 </head>
 <body>
     
+    <header>
+        <div class="log">
+            <img src="./assets/logo.png" alt="Les petits plats">
+        </div>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" class="search-bar__input">
+        <span class="search-bar__icon"> 
+            <i class="fas fa-search"> </i>
+        </span>
+    </div>
+
+
+    <div class="tags">
+
+        <div class="tag--active tag-primary"> 
+            <span class="text" >Coco </span>
+            <i class="fas fa-close"> </i>
+        </div>
+
+        <div class="tag--active tag-alert"> 
+            <span class="text" >Jus de citron </span>
+            <i class="fas fa-close">  </i>
+        </div>
+
+    </div>
+
+    <div class="dropdown-selectors">
+
+        <button id="ingredient-dropdown" class="dropdown btn-primary"> 
+            <div class="dropdown-search">
+                <input class="dropdown-search__input" type="text" value="Ingrédients"> 
+                <span class="dropdown-search__icon"> <i class="fas fa-chevron-down"></i> </span>
+            </div>
+            <ul class="dropdown__options">
+                <li value="jus-de-citron"> Jus de citron </li>
+                <li value="lait-de-coco"> Lait de coco </li>
+            </ul>
+        </button>
+
+        <button id="appliance-dropdown" class="dropdown btn-info"> 
+            <div class="dropdown-search">
+                <input class="dropdown-search__input" type="text" value="Appareils"> 
+                <span class="dropdown-search__icon"> <i class="fas fa-chevron-down"></i> </span>
+            </div>
+            <ul class="dropdown__options">
+                <li value="jus-de-citron"> Jus de citron </li>
+                <li value="lait-de-coco"> Lait de coco </li>
+            </ul>
+        </button>
+
+        <button id="ustensil-dropdown" class="dropdown btn-alert">
+            <div class="dropdown-search">
+                <input class="dropdown-search__input" type="text" value="Ustensiles"> 
+                <span class="dropdown-search__icon"> <i class="fas fa-chevron-down"></i> </span>
+            </div>
+            <ul class="dropdown__options">
+                <li value="jus-de-citron"> Jus de citron </li>
+                <li value="lait-de-coco"> Lait de coco </li>
+            </ul>
+        </button>
+
+    </div>
+
+    <div class="cards">
+
+        <!-- results here -->
+
+        <article class="card"> 
+            <div class="card__image"> </div>
+            <div class="card__body"> 
+                <div class="row">
+
+                    <div class="card__title"> 
+                        <h3> Limonade de Coco </h3>
+                    </div>
+
+                    <div class="recipe-time"> 
+                        <span class="recipe-time__icon"> <i class="fas fa-clock"></i> </span>
+                        <span class="recipe-time__value"> 10 min </span>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="ingredients">
+
+                        <div class="ingredient">
+                            <span class="ingredient__label"> Lait de coco </span>
+                            <span class="ingredient__quantity"> 
+                                <span class="ingredient__quantity-value"> 400 </span>                                
+                                <span class="ingredient__quantity-unit"> ml</span> 
+                            </span>
+                        </div>  <!--.ingredient -->
+
+                        <div class="ingredient">
+                            <span class="ingredient__label"> Jus de citron </span>
+                            <span class="ingredient__quantity"> 
+                                <span class="ingredient__quantity-value"> 2 </span>                                
+                                <span class="ingredient__quantity-unit"></span> 
+                            </span>
+                        </div>  <!--.ingredient -->
+
+                        <div class="ingredient">
+                            <span class="ingredient__label"> Crème coco </span>
+                            <span class="ingredient__quantity"> 
+                                <span class="ingredient__quantity-value"> 4 </span>                                
+                                <span class="ingredient__quantity-unit"> cuillères</span> 
+                            </span>
+                        </div>  <!--.ingredient -->
+
+                        <div class="ingredient">
+                            <span class="ingredient__label"> Sucre </span>
+                            <span class="ingredient__quantity"> 
+                                <span class="ingredient__quantity-value"> 20 </span>                                
+                                <span class="ingredient__quantity-unit"> g</span> 
+                            </span>
+                        </div>  <!--.ingredient -->
+
+                        <div class="ingredient">
+                            <span class="ingredient__label"> Glaçons </span>
+                            <span class="ingredient__quantity"> 
+                                <span class="ingredient__quantity-value"> 2 </span>                                
+                                <span class="ingredient__quantity-unit"></span> 
+                            </span>
+                        </div>  <!--.ingredient -->
+
+                    </div> <!--.ingredients -->
+
+                    <div class="description">
+                        <p> Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée </p>
+                    </div>
+                    
+                </div> <!--.row -->
+            </div> <!--.card__body -->
+        </article>
+
+    </div> <!--.cards-->
+
 </body>
 
     <script src="./scripts/index.js" type="module"> </script> 
