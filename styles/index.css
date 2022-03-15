@@ -313,15 +313,15 @@ button.dropdown > * {
   font-size: 10px;
 }
 
-.tag.primary {
+.tag.tag-primary {
   background-color: #3282F7;
 }
 
-.tag.success {
+.tag.tag-success {
   background-color: #68D9A4;
 }
 
-.tag.danger {
+.tag.tag-danger {
   background-color: #ED6454;
 }
 

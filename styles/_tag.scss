@@ -31,15 +31,15 @@
         }
     }
 
-    &.primary {
+    &.tag-primary {
         background-color: $blue;
     }
     
-    &.success {
+    &.tag-success {
         background-color: $green;
     }
     
-    &.danger {
+    &.tag-danger {
         background-color: $red;
     }
 }

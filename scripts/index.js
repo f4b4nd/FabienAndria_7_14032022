@@ -19,19 +19,19 @@ function displayDropdowns () {
         {
             id: 'ingredient-dropdown',
             label: 'Ingrédients',
-            btnClass: 'primary',
+            dataColor: 'primary',
             options: getIngredients(recipes).sort()
         },
         {
             id: 'appliance-dropdown',
             label: 'Appareils',
-            btnClass: 'success',
+            dataColor: 'success',
             options: getAppliances(recipes).sort()
         },
         {
             id: 'ustensil-dropdown',
             label: 'Ustensiles',
-            btnClass: 'danger',
+            dataColor: 'danger',
             options: getUstensils(recipes).sort()
         }
     ]
