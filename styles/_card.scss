@@ -32,6 +32,10 @@
     justify-content: space-between;
     align-items: center;
     
+    .card__title {
+        flex: 1;
+    }
+
     h3 {
         font-size: 1.1em;
         margin: 0;
@@ -50,19 +54,19 @@
     flex: 1;
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 5px;
 
     ul.ingredients {    
         flex: 1;
-        font-size: 0.9em; 
+        font-size: 0.85em; 
 
         display: flex;
         flex-direction: column;
-        row-gap: 2px;
+        row-gap: 1px;
     }
 
     .description {
-        flex-basis: 45%;
+        flex-basis: 40%;
     }
 
 }
@@ -84,32 +88,13 @@
     margin: 0;
     padding: 0;
 
-    li.ingredient {
-
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        column-gap: 5px;
-        
-        font-size: 0.9em;
-    
-        .ingredient__label {
-            font-weight: bold;
-        }
-    
-        .ingredient__quantity {
-            display: flex;
-            justify-content: flex-start;
-            column-gap: 3px;
-        }
-    
+    li.ingredient .ingredient__label {
+        font-weight: bold;        
     }
 
 }
 
 .card__body__text .ingredient__quantity-value::before {
     content: ':';
-    width: 10px;
-    height: 10px;
 }
 

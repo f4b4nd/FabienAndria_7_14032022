@@ -86,6 +86,12 @@ button {
           align-items: center;
 }
 
+.card__body__header .card__title {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 .card__body__header h3 {
   font-size: 1.1em;
   margin: 0;
@@ -109,15 +115,15 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
+  -webkit-column-gap: 5px;
+          column-gap: 5px;
 }
 
 .card__body__text ul.ingredients {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  font-size: 0.9em;
+  font-size: 0.85em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -125,12 +131,12 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  row-gap: 2px;
+  row-gap: 1px;
 }
 
 .card__body__text .description {
-  -ms-flex-preferred-size: 45%;
-      flex-basis: 45%;
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
 }
 
 .card__body__text .description p {
@@ -149,39 +155,12 @@ button {
   padding: 0;
 }
 
-.card__body__text ul.ingredients li.ingredient {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-column-gap: 5px;
-          column-gap: 5px;
-  font-size: 0.9em;
-}
-
 .card__body__text ul.ingredients li.ingredient .ingredient__label {
   font-weight: bold;
 }
 
-.card__body__text ul.ingredients li.ingredient .ingredient__quantity {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-column-gap: 3px;
-          column-gap: 3px;
-}
-
 .card__body__text .ingredient__quantity-value::before {
   content: ':';
-  width: 10px;
-  height: 10px;
 }
 
 .dropdown {
