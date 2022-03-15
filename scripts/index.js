@@ -40,7 +40,7 @@ function displayDropdowns () {
     dropdowns.forEach(item => {
         const dropdown = new DropdownComponent({props: item})
         const dropdownDOM = dropdown.getComponent()
-        DropdownComponent.setEventListeners(dropdownDOM)
+        dropdown.handleEvents()
         dropdownsDOM.appendChild(dropdownDOM)
     })
 }

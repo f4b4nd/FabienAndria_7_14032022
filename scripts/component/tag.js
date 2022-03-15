@@ -1,4 +1,4 @@
-import { DropdownComponent } from "./dropdown.js"
+import { DropdownComponent, moveDropdownListItemToTags } from "./dropdown.js"
 
 export const getTagComponent = ({props}) => {
 
@@ -26,25 +26,25 @@ export const getTagComponent = ({props}) => {
 function moveTagToDropdownList () {
 
     const tag = this.closest('.tag')
-
     const dropdownID = tag.getAttribute('data-origin')
-
     const dropdown = document.getElementById(dropdownID)
-
-    const dropdownOptions = dropdown.querySelector('.dropdown__options')
 
     const props = {
         option: tag.getAttribute('value'),
         btnClass: tag.classList[1],
         dropdownID: tag.getAttribute('data-origin')
     }
-    const innerHTML = DropdownComponent.getOptionItemInnerHTML(props)
-    const doc = document.createElement('span')
-    doc.innerHTML = innerHTML
 
-    DropdownComponent.setEventListeners(dropdown)
+    // add tag to dropdown__options
+    const optionInnerHTML = DropdownComponent.getOptionItemInnerHTML(props)
+    const dropdownOptions = dropdown.querySelector('.dropdown__options')
+    dropdownOptions.insertAdjacentHTML('beforeend', optionInnerHTML)
 
-    console.log('doc', doc)
-    dropdownOptions.appendChild(doc)
+    // restore eventlistener
+    DropdownComponent.handleClickOnListItems(dropdown)
+
+    // remove tag from tags
+    const tags = this.closest('ul')
+    tags.removeChild(tag)
 
 }

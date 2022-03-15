@@ -42,14 +42,21 @@ export class DropdownComponent {
         return `<li class="${props.btnClass}" data-origin="${props.dropdownID}" value="${props.option}"> ${props.option} </li>`
     }
 
-    static setEventListeners (dropdown) {
-        /** Dropdown Active on click */
-        const dropdownIcon = dropdown.querySelector('.dropdown-textsearch__icon')
-        dropdownIcon.addEventListener('click', () => this.setDropdownActive())
+    handleEvents () {
+        this.handleClickDropdownActive()
+        DropdownComponent.handleClickOnListItems(this.dropdown)
+    }
 
+    static handleClickOnListItems (dropdown) {
         /** List Items are moved to tags on click */
         const listItems = dropdown.querySelectorAll('li')
         listItems.forEach(li => li.addEventListener('click', moveDropdownListItemToTags))
+    }
+
+    handleClickDropdownActive () {
+        /** Dropdown switch from Active to Unactive when click on arrow */
+        const dropdownIcon = this.dropdown.querySelector('.dropdown-textsearch__icon')
+        dropdownIcon.addEventListener('click', () => this.setDropdownActive())
     }
 
     setDropdownActive () {
@@ -66,9 +73,9 @@ export class DropdownComponent {
 }
 
 
-function moveDropdownListItemToTags () {
+export function moveDropdownListItemToTags () {
 
-    console.log(this)
+    console.log('movedropdown', this)
 
     const props = {
         dataOrigin : this.getAttribute('data-origin'),
@@ -76,10 +83,13 @@ function moveDropdownListItemToTags () {
         tagClass: this.classList[0]
     }
 
+    // append to tags
     const li = getTagComponent({props})
-
     const tags = document.querySelector('#tags')
-
     tags.appendChild(li)
+
+    // remove from dropdown__options
+    const ul = this.closest('ul')
+    ul.removeChild(this)
 
 }
