@@ -1,9 +1,28 @@
-.dropdown {
+button.dropdown {
+
+    display: flex;
+    flex-direction: column;
+    
     color: white;
     border-radius: 5px;
-    padding: 1em;
+    padding: 1em 2em;
     flex-basis: 30%;
+
+
+    ul.dropdown__options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        font-size: 1.2em;
+
+    }
+
+    & > * {
+        width: 100%;
+    }
 }
+
+
 
 .dropdown-textsearch {
     
@@ -38,20 +57,7 @@
     }
 }
 
-button.dropdown {
 
-    ul {
-        margin: 0;
-        padding: 0;
-    }
-
-    ul.dropdown__options {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-
-        font-size: 1.2em;
-    }
-}
 
 .btn-primary {
     background-color: $blue;

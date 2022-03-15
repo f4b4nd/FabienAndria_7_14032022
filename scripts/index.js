@@ -17,22 +17,22 @@ function displayResults () {
 function displayDropdowns () {
     const dropdowns = [
         {
-            dropdownID: 'ingredient-dropdown',
-            dropdownLabel: 'Ingrédients',
-            dropdownBtnClass: 'btn-primary',
-            options: getIngredients(recipes)
+            id: 'ingredient-dropdown',
+            label: 'Ingrédients',
+            btnClass: 'btn-primary',
+            options: getIngredients(recipes).sort()
         },
         {
-            dropdownID: 'appliance-dropdown',
-            dropdownLabel: 'Appareils',
-            dropdownBtnClass: 'btn-success',
-            options: getAppliances(recipes)
+            id: 'appliance-dropdown',
+            label: 'Appareils',
+            btnClass: 'btn-success',
+            options: getAppliances(recipes).sort()
         },
         {
-            dropdownID: 'ustensil-dropdown',
-            dropdownLabel: 'Ustensils',
-            dropdownBtnClass: 'btn-danger',
-            options: getUstensils(recipes)
+            id: 'ustensil-dropdown',
+            label: 'Ustensiles',
+            btnClass: 'btn-danger',
+            options: getUstensils(recipes).sort()
         }
     ]
 

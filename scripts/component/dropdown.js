@@ -2,20 +2,18 @@ export const getDropdownComponent = ({props}) => {
 
     const dropdown = document.createElement('button')
 
-    dropdown.id = props.dropdownID
+    dropdown.id = props.id
 
     dropdown.classList.add('dropdown')
-    dropdown.classList.add(props.dropdownBtnClass)
+    dropdown.classList.add(props.btnClass)
 
     dropdown.innerHTML = `
         <div class="dropdown-textsearch">
-            <input class="dropdown-textsearch__input" type="text" placeholder="${props.dropdownLabel}"> 
+            <input class="dropdown-textsearch__input" type="text" placeholder="${props.label}"> 
             <span class="dropdown-textsearch__icon"> <i class="fas fa-chevron-down"></i> </span>
         </div>
         <ul class="dropdown__options">
             ${getDropdownOptionsInnerHTML(props.options)}
-            <li value="jus-de-citron"> Jus de citron </li>
-            <li value="lait-de-coco"> Lait de coco </li>
         </ul>
     `
     return dropdown
