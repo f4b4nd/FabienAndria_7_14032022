@@ -183,9 +183,14 @@ button.dropdown {
 button.dropdown ul.dropdown__options {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1em;
   font-size: 1.2em;
+}
+
+button.dropdown li {
+  text-align: left;
 }
 
 button.dropdown > * {
