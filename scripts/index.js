@@ -1,5 +1,7 @@
 import recipes from '../data/recipes.js'
 import { getCardComponent } from './component/card.js'
+import { getDropdownComponent } from './component/dropdown.js'
+import { getIngredients, getAppliances, getUstensils } from './getData.js'
 
 function displayResults () {
 
@@ -12,41 +14,45 @@ function displayResults () {
 
 }
 
-const getIngredients = () => (
-    recipes.reduce((acc, recipe) => {
+function displayDropdowns () {
+    const dropdowns = [
+        {
+            dropdownID: 'ingredient-dropdown',
+            dropdownLabel: 'Ingrédients',
+            dropdownBtnClass: 'btn-primary',
+            options: getIngredients(recipes)
+        },
+        {
+            dropdownID: 'appliance-dropdown',
+            dropdownLabel: 'Appareils',
+            dropdownBtnClass: 'btn-success',
+            options: getAppliances(recipes)
+        },
+        {
+            dropdownID: 'ustensil-dropdown',
+            dropdownLabel: 'Ustensils',
+            dropdownBtnClass: 'btn-danger',
+            options: getUstensils(recipes)
+        }
+    ]
 
-        const newIngredients = recipe.ingredients.reduce((newAcc, item) => (
-            acc.includes(item.ingredient) ? newAcc : [...newAcc, item.ingredient]
-        ), [])
+    const dropdownsDOM = document.querySelector('#dropdowns')
+    dropdowns.forEach(item => {
+        const dropdown = getDropdownComponent({props: item})
+        dropdownsDOM.appendChild(dropdown)
+    })
+}
 
-        return [...acc, ...newIngredients]
-    }, [])
-)
-
-const getAppliances = () => (
-    recipes.reduce((acc, recipe) => acc.includes(recipe.appliance) ? acc : [...acc, recipe.appliance], [])
-)
-
-const getUstensils = () => (
-    recipes.reduce((acc, recipe) => {
-
-        const newUstensils = recipe.ustensils.reduce((newAcc, ustensil) => (
-            acc.includes(ustensil) ? newAcc : [...newAcc, ustensil]
-        ), [])
-
-        return [...acc, ...newUstensils]
-    }, [])
-)
 
 function init () {
     displayResults()
-    const ingredients = getIngredients()
-    const appliances = getAppliances()
-    const ustensils = getUstensils()
+    const ingredients = getIngredients(recipes)
+    const appliances = getAppliances(recipes)
+    const ustensils = getUstensils(recipes)
     console.log(ingredients)
     console.log(appliances)
     console.log(ustensils)
-
+    displayDropdowns()
 }
 
 init ()
