@@ -15,21 +15,37 @@ function displayResults () {
 const getIngredients = () => (
     recipes.reduce((acc, recipe) => {
 
-        const newIngredients = recipe.ingredients.reduce((newAcc, item) => {
-            if (!acc.includes(item.ingredient)) {
-                newAcc.push(item.ingredient)
-            }
-            return newAcc
-        }, [])
+        const newIngredients = recipe.ingredients.reduce((newAcc, item) => (
+            acc.includes(item.ingredient) ? newAcc : [...newAcc, item.ingredient]
+        ), [])
 
         return [...acc, ...newIngredients]
     }, [])
 )
 
+const getAppliances = () => (
+    recipes.reduce((acc, recipe) => acc.includes(recipe.appliance) ? acc : [...acc, recipe.appliance], [])
+)
+
+const getUstensils = () => (
+    recipes.reduce((acc, recipe) => {
+
+        const newUstensils = recipe.ustensils.reduce((newAcc, ustensil) => (
+            acc.includes(ustensil) ? newAcc : [...newAcc, ustensil]
+        ), [])
+
+        return [...acc, ...newUstensils]
+    }, [])
+)
+
 function init () {
     displayResults()
-    const ing = getIngredients()
-    console.log(ing)
+    const ingredients = getIngredients()
+    const appliances = getAppliances()
+    const ustensils = getUstensils()
+    console.log(ingredients)
+    console.log(appliances)
+    console.log(ustensils)
 
 }
 
