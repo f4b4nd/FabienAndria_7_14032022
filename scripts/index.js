@@ -19,19 +19,19 @@ function displayDropdowns () {
         {
             id: 'ingredient-dropdown',
             label: 'Ingrédients',
-            btnClass: 'btn-primary',
+            btnClass: 'primary',
             options: getIngredients(recipes).sort()
         },
         {
             id: 'appliance-dropdown',
             label: 'Appareils',
-            btnClass: 'btn-success',
+            btnClass: 'success',
             options: getAppliances(recipes).sort()
         },
         {
             id: 'ustensil-dropdown',
             label: 'Ustensiles',
-            btnClass: 'btn-danger',
+            btnClass: 'danger',
             options: getUstensils(recipes).sort()
         }
     ]
@@ -48,12 +48,6 @@ function displayDropdowns () {
 
 function init () {
     displayResults()
-    const ingredients = getIngredients(recipes)
-    const appliances = getAppliances(recipes)
-    const ustensils = getUstensils(recipes)
-    console.log(ingredients)
-    console.log(appliances)
-    console.log(ustensils)
     displayDropdowns()
 }
 

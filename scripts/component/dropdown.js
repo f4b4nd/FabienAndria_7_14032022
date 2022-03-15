@@ -1,3 +1,5 @@
+import { getTagComponent } from "./tag.js"
+
 export class DropdownComponent {
 
     constructor ({props}) {
@@ -14,7 +16,7 @@ export class DropdownComponent {
 
         this.dropdown.classList.add('dropdown')
         this.dropdown.classList.add('dropdown--active')
-        this.dropdown.classList.add(this.btnClass)
+        this.dropdown.classList.add('btn-' + this.btnClass)
 
         this.dropdown.innerHTML = `
             <div class="dropdown-textsearch">
@@ -35,19 +37,21 @@ export class DropdownComponent {
     }
 
     getOptionItemInnerHTML (option) {
-        return `<li value="${option}"> ${option} </li>`
+        return `<li class="${this.btnClass}" value="${option}"> ${option} </li>`
     }
 
     setEventListeners () {
+        /** Dropdown Active on click */
         const dropdownIcon = this.dropdown.querySelector('.dropdown-textsearch__icon')
-        const listItems = this.dropdown.querySelectorAll('li')
-
         dropdownIcon.addEventListener('click', () => this.setDropdownActive())
-        listItems.forEach(li => li.addEventListener('click', this.moveListItemToTags))
+
+        /** List Items are moved to tags on click */
+        const listItems = this.dropdown.querySelectorAll('li')
+        listItems.forEach(li => li.addEventListener('click', moveDropdownListItemToTags))
     }
 
     setDropdownActive () {
-        console.log(this)
+
         if ([...this.dropdown.classList].includes('dropdown--active')) {
             this.dropdown.classList.remove('dropdown--active')
         }
@@ -57,9 +61,22 @@ export class DropdownComponent {
 
     }
 
-    moveListItemToTags () {
-        console.log(this)
-    }
-
 }
 
+
+function moveDropdownListItemToTags () {
+
+    console.log(this)
+
+    const props = {
+        value: this.getAttribute('value'),
+        tagClass: 'tag-' + this.classList[0]
+    }
+
+    const li = getTagComponent({props})
+
+    const tags = document.querySelector('#tags')
+
+    tags.appendChild(li)
+
+}
