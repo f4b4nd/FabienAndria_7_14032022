@@ -199,6 +199,10 @@ button.dropdown li {
   cursor: pointer;
 }
 
+button.dropdown li:hover {
+  color: lightgrey;
+}
+
 button.dropdown > * {
   width: 100%;
 }
@@ -309,15 +313,15 @@ button.dropdown > * {
   font-size: 10px;
 }
 
-.tag-primary {
+.tag.primary {
   background-color: #3282F7;
 }
 
-.tag-success {
+.tag.success {
   background-color: #68D9A4;
 }
 
-.tag-danger {
+.tag.danger {
   background-color: #ED6454;
 }
 

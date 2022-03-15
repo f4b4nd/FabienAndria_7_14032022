@@ -26,6 +26,10 @@ button.dropdown {
     li {
         text-align: left;
         cursor: pointer;
+
+        &:hover {
+            color: lightgrey;
+        }
     }
 
     & > * {

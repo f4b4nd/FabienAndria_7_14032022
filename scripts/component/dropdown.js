@@ -33,20 +33,22 @@ export class DropdownComponent {
     }
 
     getOptionsInnerHTML () {
-        return this.options.reduce((acc, option) => acc + this.getOptionItemInnerHTML(option), '')
+        return this.options.reduce((acc, option) => (
+            acc + DropdownComponent.getOptionItemInnerHTML({option, btnClass: this.btnClass, dropdownID: this.dropdown.id})
+        ), '')
     }
 
-    getOptionItemInnerHTML (option) {
-        return `<li class="${this.btnClass}" value="${option}"> ${option} </li>`
+    static getOptionItemInnerHTML (props) {
+        return `<li class="${props.btnClass}" data-origin="${props.dropdownID}" value="${props.option}"> ${props.option} </li>`
     }
 
-    setEventListeners () {
+    static setEventListeners (dropdown) {
         /** Dropdown Active on click */
-        const dropdownIcon = this.dropdown.querySelector('.dropdown-textsearch__icon')
+        const dropdownIcon = dropdown.querySelector('.dropdown-textsearch__icon')
         dropdownIcon.addEventListener('click', () => this.setDropdownActive())
 
         /** List Items are moved to tags on click */
-        const listItems = this.dropdown.querySelectorAll('li')
+        const listItems = dropdown.querySelectorAll('li')
         listItems.forEach(li => li.addEventListener('click', moveDropdownListItemToTags))
     }
 
@@ -69,8 +71,9 @@ function moveDropdownListItemToTags () {
     console.log(this)
 
     const props = {
+        dataOrigin : this.getAttribute('data-origin'),
         value: this.getAttribute('value'),
-        tagClass: 'tag-' + this.classList[0]
+        tagClass: this.classList[0]
     }
 
     const li = getTagComponent({props})

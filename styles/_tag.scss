@@ -31,17 +31,16 @@
         }
     }
 
-
+    &.primary {
+        background-color: $blue;
+    }
+    
+    &.success {
+        background-color: $green;
+    }
+    
+    &.danger {
+        background-color: $red;
+    }
 }
 
-.tag-primary {
-    background-color: $blue;
-}
-
-.tag-success {
-    background-color: $green;
-}
-
-.tag-danger {
-    background-color: $red;
-}
