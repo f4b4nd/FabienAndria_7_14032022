@@ -7,9 +7,15 @@ button.dropdown {
     border-radius: 5px;
     padding: 1em 2em;
     flex-basis: 30%;
+    position: relative;
 
+    &:not(.dropdown--active) ul.dropdown__options {
+        display: none;
+    }
 
     ul.dropdown__options {
+        //position: absolute;
+
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-column-gap: 1em;

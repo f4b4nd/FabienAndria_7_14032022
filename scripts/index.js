@@ -1,6 +1,6 @@
 import recipes from '../data/recipes.js'
 import { getCardComponent } from './component/card.js'
-import { getDropdownComponent } from './component/dropdown.js'
+import { DropdownComponent } from './component/dropdown.js'
 import { getIngredients, getAppliances, getUstensils } from './getData.js'
 
 function displayResults () {
@@ -38,8 +38,10 @@ function displayDropdowns () {
 
     const dropdownsDOM = document.querySelector('#dropdowns')
     dropdowns.forEach(item => {
-        const dropdown = getDropdownComponent({props: item})
-        dropdownsDOM.appendChild(dropdown)
+        const dropdown = new DropdownComponent({props: item})
+        const dropdownDOM = dropdown.getComponent()
+        dropdown.setEventListeners()
+        dropdownsDOM.appendChild(dropdownDOM)
     })
 }
 

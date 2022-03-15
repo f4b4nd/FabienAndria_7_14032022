@@ -178,6 +178,11 @@ button.dropdown {
   padding: 1em 2em;
   -ms-flex-preferred-size: 30%;
       flex-basis: 30%;
+  position: relative;
+}
+
+button.dropdown:not(.dropdown--active) ul.dropdown__options {
+  display: none;
 }
 
 button.dropdown ul.dropdown__options {
