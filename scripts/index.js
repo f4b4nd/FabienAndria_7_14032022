@@ -12,8 +12,25 @@ function displayResults () {
 
 }
 
+const getIngredients = () => (
+    recipes.reduce((acc, recipe) => {
+
+        const newIngredients = recipe.ingredients.reduce((newAcc, item) => {
+            if (!acc.includes(item.ingredient)) {
+                newAcc.push(item.ingredient)
+            }
+            return newAcc
+        }, [])
+
+        return [...acc, ...newIngredients]
+    }, [])
+)
+
 function init () {
-    displayResults ()
+    displayResults()
+    const ing = getIngredients()
+    console.log(ing)
+
 }
 
 init ()
