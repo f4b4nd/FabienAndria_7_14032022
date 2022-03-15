@@ -60,18 +60,35 @@ button {
   height: 50%;
   background-color: #E7E7E7;
   padding: 0.5em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .card__body__header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.card__body__header h3 {
+  font-size: 1.1em;
+  margin: 0;
 }
 
 .card__body__header .fa-clock {
@@ -89,6 +106,9 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-column-gap: 10px;
           column-gap: 10px;
 }
@@ -97,6 +117,7 @@ button {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  font-size: 0.9em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,13 +129,14 @@ button {
 }
 
 .card__body__text .description {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  -ms-flex-preferred-size: 45%;
+      flex-basis: 45%;
 }
 
 .card__body__text .description p {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  font-size: 1em;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -398,8 +420,8 @@ main {
 .cards {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: (minmax(320px, 1fr))[3];
+      grid-template-columns: repeat(3, minmax(320px, 1fr));
   gap: 2em 1em;
 }
 
@@ -410,6 +432,22 @@ main {
   .cards {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  main {
+    margin: 2em 1em;
+  }
+  .cards {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  main {
+    margin: 2em 2em;
   }
 }
 /*# sourceMappingURL=index.css.map */

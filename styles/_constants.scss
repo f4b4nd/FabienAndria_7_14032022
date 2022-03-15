@@ -6,6 +6,10 @@ $dark-grey : #C7BEBE ;
 
 
 // BREAKPOINTS
+$xxl-minwidth : 1400px;
+$xl-maxwidth : $xxl-minwidth - 1px;
+$xl-minwidth : 1200px;
+$lg-maxwidth: $xl-minwidth - 1px;
 $lg-minwidth : 992px;
 $md-maxwidth : $lg-minwidth - 1px;
 $md-minwidth : 768px;

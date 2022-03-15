@@ -51,7 +51,7 @@ main {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(320px, 1fr));
     gap: 2em 1em;
 }
 
@@ -66,4 +66,23 @@ main {
         grid-template-columns: 1fr;
     }
     
+}
+
+
+@media screen and (min-width: $md-minwidth) and (max-width: $lg-maxwidth) {
+    
+    main {
+        margin: 2em 1em;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media screen and (min-width: $xl-minwidth) and (max-width: $xl-maxwidth) {
+    main {
+        margin: 2em 2em;
+    }
 }
