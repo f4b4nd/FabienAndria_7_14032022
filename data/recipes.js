@@ -75,7 +75,7 @@ export default [
         "ingredients": [
             {
                 "ingredient": "Poulet",
-                "quantity" : 1          
+                "quantity" : 1
             },
             {
                 "ingredient": "Lait de coco",
@@ -150,7 +150,7 @@ export default [
         "ingredients":[
             {
                 "ingredient": "Pâte feuilletée",
-                "quantity": 1 
+                "quantity": 1
             },
             {
                 "ingredient": "Thon en miettes",
@@ -228,7 +228,7 @@ export default [
             {
                 "ingredient": "Pâte sablée",
                 "quantity": 1
-            }, 
+            },
             {
                 "ingredient": "Chocolat au lait",
                 "quantity": 300,
@@ -288,7 +288,7 @@ export default [
                 "unit": "grammes"
             }
 
-        ], 
+        ],
         "time": 60,
         "description": "Hachez les noix grossièrement. Faire fondre le chocolat avec le beurre. Mélanger les oeuf et le sucre et mélanger au chocolat. Ajouter la farine. Mélanger afin d'avoir quelque chose d'homogène puis incorporer les noix. Verser la préparation dans un moule de préférence rectangulaire. Cuire 2O à 25 minutes à 180°. Sortez du four et attendez quelques minutes pour démouler. Servir avec une boule de glace pour plus de gourmandise.",
         "appliance": "Four",
@@ -316,9 +316,9 @@ export default [
             },
             {
                 "ingredient": "Huile d'olive"
-            }, 
+            },
             {
-                "ingredient": "Basilic"    
+                "ingredient": "Basilic"
             }
         ],
         "time": 15,
@@ -379,7 +379,7 @@ export default [
                 "ingredient": "Jambon de parme",
                 "quantity": 4,
                 "unit": "tranches"
-            }, 
+            },
             {
                 "ingredient": "Pommes",
                 "quantity": 1
@@ -1299,7 +1299,6 @@ export default [
                 "quantity": 50,
                 "unit": "grammes"
             }
-            
         ],
         "time": 60,
         "description":"Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d'huile d'olive. Ajouter l'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomates. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage rapé",
@@ -1420,7 +1419,7 @@ export default [
         "description":"Séparer les blancs d'oeufs. Faire fondre le chocolat au bain marie. Ajouter les jaunes et le sucre au chocolat hors du feu. Battre les blancs en neige. Ajouter les blancs au mélange de chocolat. Mélangez délicatement avec une spatule. Servir dans un plat ou dans des verres. Mettre au frais",
         "appliance": "Casserolle",
         "ustensils":["fouet", "spatule", "verres"]
-    }, 
+    },
     {
         "id": 42,
         "name": "Charlotte au poires",
@@ -1482,7 +1481,7 @@ export default [
         "description":"Préchauffez le fours à 200°. Etaler la pate. La mettre dans un moule. Battre les oeufs avec le sucre. Ajouter le jus de citron et le beurre. Verser le tout sur la pate. Au four 30 minutes. Bon appetit ",
         "appliance": "Four",
         "ustensils":["rouleau à patisserie", "moule à tarte", "presse citron"]
-    }, 
+    },
     {
         "id": 44,
         "name": "Crème déssert au chocolat",

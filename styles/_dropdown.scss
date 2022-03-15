@@ -22,6 +22,16 @@
         outline: none;
     }
 
+    input::-webkit-input-placeholder {
+        color: white;
+        font-size: 1.2em;
+    }
+    
+    input::-moz-placeholder {
+        color: white;
+        font-size: 1.2em;
+    }
+
     &__icon {
         cursor: pointer;
         font-size: 1.2em;

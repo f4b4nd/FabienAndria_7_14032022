@@ -95,5 +95,9 @@
 
 }
 
-
+.card__body__text .ingredient__quantity-value::before {
+    content: ':';
+    width: 10px;
+    height: 10px;
+}
 
