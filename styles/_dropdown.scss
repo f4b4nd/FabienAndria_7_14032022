@@ -3,23 +3,31 @@ button.dropdown {
     display: flex;
     flex-direction: column;
     
+
     color: white;
     border-radius: 5px;
     padding: 1em 2em;
     flex-basis: 30%;
-    position: relative;
+    height: 70px;
+    padding: 0;
+
+    overflow: visible;
+    position: sticky;
 
     &:not(.dropdown--active) ul.dropdown__options {
         display: none;
     }
 
     ul.dropdown__options {
-        //position: absolute;
 
         display: grid;
+        align-items: center;
         grid-template-columns: repeat(3, 1fr);
         grid-column-gap: 1em;
         font-size: 1.2em;
+
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
 
     }
 
@@ -32,20 +40,21 @@ button.dropdown {
         }
     }
 
-    & > * {
+    .dropdown__header, .dropdown__options {
         width: 100%;
+        padding: 1em;
     }
 }
 
 
 
-.dropdown-textsearch {
+.dropdown__header {
     
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    &__input {
+    .dropdown__input {
         color: white;
         font-size: 1.3em;
         height: 40px;
@@ -66,7 +75,7 @@ button.dropdown {
         font-size: 1.2em;
     }
 
-    &__icon {
+    .dropdown__arrowIcon {
         cursor: pointer;
         font-size: 1.2em;
     }
@@ -74,26 +83,38 @@ button.dropdown {
 
 
 
-.btn-primary {
+.dropdown.btn-primary {
     background-color: $blue;
 
-    .dropdown-textsearch__input {
+    .dropdown__input {
+        background-color: $blue;
+    }
+
+    .dropdown__options {
         background-color: $blue;
     }
 }
 
-.btn-success {
+.dropdown.btn-success {
     background-color: $green;
 
-    .dropdown-textsearch__input {
+    .dropdown__input {
+        background-color: $green;
+    }
+
+    .dropdown__options {
         background-color: $green;
     }
 }
 
-.btn-danger {
+.dropdown.btn-danger {
     background-color: $red;
 
-    .dropdown-textsearch__input {
+    .dropdown__input {
+        background-color: $red;
+    }
+
+    .dropdown__options {
         background-color: $red;
     }
 }

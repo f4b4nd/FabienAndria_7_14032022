@@ -1,12 +1,11 @@
 import { getTagComponent } from "../component/tag.js"
-import { DropdownComponent } from "../component/dropdown.js"
+import { DropdownFactory } from "../component/dropdown.js"
 
 export function moveDropdownItemToTags () {
 
     const props = {
-        dataOrigin : this.getAttribute('data-origin'),
         value: this.getAttribute('value'),
-        tagClass: this.classList[0],
+        dataOrigin : this.getAttribute('data-origin'),
         dataColor: this.getAttribute('data-color'),
     }
 
@@ -35,12 +34,12 @@ export function moveTagToDropdownList () {
     }
 
     // add tag to dropdown__options
-    const optionInnerHTML = DropdownComponent.getOptionItemInnerHTML(props)
+    const optionInnerHTML = DropdownFactory.getOptionItemInnerHTML({props})
     const dropdownOptions = dropdown.querySelector('.dropdown__options')
     dropdownOptions.insertAdjacentHTML('beforeend', optionInnerHTML)
 
     // restore eventlistener
-    DropdownComponent.handleClickOnListItems(dropdown)
+    DropdownFactory.handleClickOnListItems(dropdown)
 
     // remove tag from tags
     const tags = this.closest('ul')

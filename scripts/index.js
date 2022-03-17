@@ -1,6 +1,6 @@
 import recipes from '../data/recipes.js'
 import { getCardComponent } from './component/card.js'
-import { DropdownComponent } from './component/dropdown.js'
+import { DropdownFactory } from './component/dropdown.js'
 import { getIngredients, getAppliances, getUstensils } from './getData.js'
 
 function displayResults () {
@@ -36,12 +36,12 @@ function displayDropdowns () {
         }
     ]
 
-    const dropdownsDOM = document.querySelector('#dropdowns')
-    dropdowns.forEach(item => {
-        const dropdown = new DropdownComponent({props: item})
-        const dropdownDOM = dropdown.getComponent()
+    const sectionDOM = document.querySelector('#dropdowns')
+    dropdowns.forEach(props => {
+        const dropdown = new DropdownFactory({props})
+        const dropdownComponent = dropdown.getComponent()
         dropdown.handleEvents()
-        dropdownsDOM.appendChild(dropdownDOM)
+        sectionDOM.appendChild(dropdownComponent)
     })
 }
 

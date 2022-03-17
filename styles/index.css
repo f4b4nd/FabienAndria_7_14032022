@@ -178,7 +178,11 @@ button.dropdown {
   padding: 1em 2em;
   -ms-flex-preferred-size: 30%;
       flex-basis: 30%;
-  position: relative;
+  height: 70px;
+  padding: 0;
+  overflow: visible;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 button.dropdown:not(.dropdown--active) ul.dropdown__options {
@@ -188,10 +192,15 @@ button.dropdown:not(.dropdown--active) ul.dropdown__options {
 button.dropdown ul.dropdown__options {
   display: -ms-grid;
   display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1em;
   font-size: 1.2em;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 button.dropdown li {
@@ -203,11 +212,12 @@ button.dropdown li:hover {
   color: lightgrey;
 }
 
-button.dropdown > * {
+button.dropdown .dropdown__header, button.dropdown .dropdown__options {
   width: 100%;
+  padding: 1em;
 }
 
-.dropdown-textsearch {
+.dropdown__header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -219,53 +229,65 @@ button.dropdown > * {
           align-items: center;
 }
 
-.dropdown-textsearch__input {
+.dropdown__header .dropdown__input {
   color: white;
   font-size: 1.3em;
   height: 40px;
   font-weight: bold;
 }
 
-.dropdown-textsearch input:focus {
+.dropdown__header input:focus {
   outline: none;
 }
 
-.dropdown-textsearch input::-webkit-input-placeholder {
+.dropdown__header input::-webkit-input-placeholder {
   color: white;
   font-size: 1.2em;
 }
 
-.dropdown-textsearch input::-moz-placeholder {
+.dropdown__header input::-moz-placeholder {
   color: white;
   font-size: 1.2em;
 }
 
-.dropdown-textsearch__icon {
+.dropdown__header .dropdown__arrowIcon {
   cursor: pointer;
   font-size: 1.2em;
 }
 
-.btn-primary {
+.dropdown.btn-primary {
   background-color: #3282F7;
 }
 
-.btn-primary .dropdown-textsearch__input {
+.dropdown.btn-primary .dropdown__input {
   background-color: #3282F7;
 }
 
-.btn-success {
+.dropdown.btn-primary .dropdown__options {
+  background-color: #3282F7;
+}
+
+.dropdown.btn-success {
   background-color: #68D9A4;
 }
 
-.btn-success .dropdown-textsearch__input {
+.dropdown.btn-success .dropdown__input {
   background-color: #68D9A4;
 }
 
-.btn-danger {
+.dropdown.btn-success .dropdown__options {
+  background-color: #68D9A4;
+}
+
+.dropdown.btn-danger {
   background-color: #ED6454;
 }
 
-.btn-danger .dropdown-textsearch__input {
+.dropdown.btn-danger .dropdown__input {
+  background-color: #ED6454;
+}
+
+.dropdown.btn-danger .dropdown__options {
   background-color: #ED6454;
 }
 

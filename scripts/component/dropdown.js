@@ -1,6 +1,6 @@
-import { moveDropdownItemToTags } from "../utils/tagMovement.js"
+import { moveDropdownItemToTags } from "../utils/moveTag.js"
 
-export class DropdownComponent {
+export class DropdownFactory {
 
     constructor ({props}) {
         this.dropdown = document.createElement('button')
@@ -15,18 +15,16 @@ export class DropdownComponent {
         this.dropdown.id = this.id
 
         this.dropdown.classList.add('dropdown')
-        this.dropdown.classList.add('dropdown--active')
         this.dropdown.classList.add('btn-' + this.dataColor)
 
         this.dropdown.innerHTML = `
-            <div class="dropdown-textsearch">
-                <input class="dropdown-textsearch__input" type="text" placeholder="${this.label}"> 
-                <span class="dropdown-textsearch__icon"> <i class="fas fa-chevron-down"></i> </span>
+            <div class="dropdown__header">
+                <input class="dropdown__input" type="text" placeholder="${this.label}"> 
+                <span class="dropdown__arrowIcon"> <i class="fas fa-chevron-down"></i> </span>
             </div>
             <ul class="dropdown__options">
                 ${this.getOptionsInnerHTML(this.options)}
-            </ul>
-        `
+            </ul> `
 
         return this.dropdown
 
@@ -35,15 +33,15 @@ export class DropdownComponent {
     getOptionsInnerHTML () {
         return this.options.reduce((acc, option) => {
             const props = {option, dataColor: this.dataColor, dropdownID: this.dropdown.id}
-            return acc + DropdownComponent.getOptionItemInnerHTML(props)
+            return acc + DropdownFactory.getOptionItemInnerHTML({props})
         }, '')
     }
 
-    static getOptionItemInnerHTML (props) {
+    static getOptionItemInnerHTML ({props}) {
         return `
             <li 
                 value="${props.option}"
-                class="${'btn-' + props.dataColor}"
+                class="${'li-' + props.dataColor}"
                 data-origin="${props.dropdownID}"
                 data-color="${props.dataColor}"
             > 
@@ -53,7 +51,7 @@ export class DropdownComponent {
 
     handleEvents () {
         this.handleClickDropdownActive()
-        DropdownComponent.handleClickOnListItems(this.dropdown)
+        DropdownFactory.handleClickOnListItems(this.dropdown)
     }
 
     static handleClickOnListItems (dropdown) {
@@ -64,17 +62,23 @@ export class DropdownComponent {
 
     handleClickDropdownActive () {
         // Dropdown switch from Active to Unactive when click on arrow
-        const dropdownIcon = this.dropdown.querySelector('.dropdown-textsearch__icon')
+        const dropdownIcon = this.dropdown.querySelector('.dropdown__arrowIcon')
         dropdownIcon.addEventListener('click', () => this.setDropdownActive())
     }
 
     setDropdownActive () {
 
+        const dropdownIcon = this.dropdown.querySelector('i')
+
         if ([...this.dropdown.classList].includes('dropdown--active')) {
             this.dropdown.classList.remove('dropdown--active')
+            dropdownIcon.classList.remove('fa-chevron-up')
+            dropdownIcon.classList.add('fa-chevron-down')
         }
         else {
             this.dropdown.classList.add('dropdown--active')
+            dropdownIcon.classList.remove('fa-chevron-down')
+            dropdownIcon.classList.add('fa-chevron-up')
         }
 
     }

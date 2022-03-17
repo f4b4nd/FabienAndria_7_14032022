@@ -1,4 +1,4 @@
-import { moveTagToDropdownList } from "../utils/tagMovement.js"
+import { moveTagToDropdownList } from "../utils/moveTag.js"
 
 
 export const getTagComponent = ({props}) => {
@@ -6,7 +6,6 @@ export const getTagComponent = ({props}) => {
     const tag = document.createElement('li')
 
     tag.classList.add('tag')
-
     tag.classList.add('tag-' + props.dataColor)
 
     tag.setAttribute('value', props.value)
