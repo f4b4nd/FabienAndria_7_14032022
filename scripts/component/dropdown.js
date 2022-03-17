@@ -19,7 +19,7 @@ export class DropdownFactory {
 
         this.dropdown.innerHTML = `
             <div class="dropdown__header">
-                <input class="dropdown__input" type="text" placeholder="${this.label}"> 
+                <input class="dropdown__input" type="text" value="${this.label}s" placeholder="Rechercher un ${this.label.toLowerCase()}"> 
                 <span class="dropdown__arrowIcon"> <i class="fas fa-chevron-down"></i> </span>
             </div>
             <ul class="dropdown__options">
@@ -63,24 +63,36 @@ export class DropdownFactory {
     handleClickDropdownActive () {
         // Dropdown switch from Active to Unactive when click on arrow
         const dropdownIcon = this.dropdown.querySelector('.dropdown__arrowIcon')
-        dropdownIcon.addEventListener('click', () => this.setDropdownActive())
+        dropdownIcon.addEventListener('click', () => {
+            const dropdownIsActive = [...this.dropdown.classList].includes('dropdown--active')
+            if (!dropdownIsActive) {
+                DropdownFactory.preventMultipleDropdownsActive()
+                DropdownFactory.setDropdownActive(this.dropdown)
+                return
+            }
+            DropdownFactory.setDropdownInactive(this.dropdown)
+        })
     }
 
-    setDropdownActive () {
+    static setDropdownInactive (dropdown) {
+        const dropdownIcon = dropdown.querySelector('i')
+        dropdown.classList.remove('dropdown--active')
+        dropdownIcon.classList.remove('fa-chevron-up')
+        dropdownIcon.classList.add('fa-chevron-down')
+    }
 
-        const dropdownIcon = this.dropdown.querySelector('i')
+    static setDropdownActive (dropdown) {
+        const dropdownIcon = dropdown.querySelector('i')
+        dropdown.classList.add('dropdown--active')
+        dropdownIcon.classList.remove('fa-chevron-down')
+        dropdownIcon.classList.add('fa-chevron-up')
+    }
 
-        if ([...this.dropdown.classList].includes('dropdown--active')) {
-            this.dropdown.classList.remove('dropdown--active')
-            dropdownIcon.classList.remove('fa-chevron-up')
-            dropdownIcon.classList.add('fa-chevron-down')
+    static preventMultipleDropdownsActive () {
+        const activeDropdowns = document.querySelectorAll('.dropdown--active')
+        if (activeDropdowns.length > 0) {
+            activeDropdowns.forEach(dropdown => DropdownFactory.setDropdownInactive(dropdown))
         }
-        else {
-            this.dropdown.classList.add('dropdown--active')
-            dropdownIcon.classList.remove('fa-chevron-down')
-            dropdownIcon.classList.add('fa-chevron-up')
-        }
-
     }
 
 }

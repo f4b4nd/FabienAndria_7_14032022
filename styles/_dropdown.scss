@@ -3,23 +3,24 @@ button.dropdown {
     display: flex;
     flex-direction: column;
     
-
     color: white;
     border-radius: 5px;
     padding: 1em 2em;
-    flex-basis: 30%;
     height: 70px;
     padding: 0;
 
     overflow: visible;
-    position: sticky;
+
+    &:not(.dropdown--active) {
+        max-width: 250px;
+    }
 
     &:not(.dropdown--active) ul.dropdown__options {
         display: none;
     }
 
     ul.dropdown__options {
-
+        z-index: 2;
         display: grid;
         align-items: center;
         grid-template-columns: repeat(3, 1fr);
@@ -59,6 +60,7 @@ button.dropdown {
         font-size: 1.3em;
         height: 40px;
         font-weight: bold;
+        width: 80%;
     }
 
     input:focus {
@@ -66,13 +68,13 @@ button.dropdown {
     }
 
     input::-webkit-input-placeholder {
-        color: white;
-        font-size: 1.2em;
+        color: ghostwhite;
+        font-size: 0.8em;
     }
     
     input::-moz-placeholder {
         color: white;
-        font-size: 1.2em;
+        font-size: 0.9em;
     }
 
     .dropdown__arrowIcon {

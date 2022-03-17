@@ -18,19 +18,19 @@ function displayDropdowns () {
     const dropdowns = [
         {
             id: 'ingredient-dropdown',
-            label: 'Ingrédients',
+            label: 'Ingrédient',
             dataColor: 'primary',
             options: getIngredients(recipes).sort()
         },
         {
             id: 'appliance-dropdown',
-            label: 'Appareils',
+            label: 'Appareil',
             dataColor: 'success',
             options: getAppliances(recipes).sort()
         },
         {
             id: 'ustensil-dropdown',
-            label: 'Ustensiles',
+            label: 'Ustensile',
             dataColor: 'danger',
             options: getUstensils(recipes).sort()
         }
