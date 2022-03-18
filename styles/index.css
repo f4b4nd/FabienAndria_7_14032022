@@ -181,10 +181,6 @@ button.dropdown {
   overflow: visible;
 }
 
-button.dropdown:not(.dropdown--active) {
-  max-width: 250px;
-}
-
 button.dropdown:not(.dropdown--active) ul.dropdown__options {
   display: none;
 }
@@ -291,6 +287,23 @@ button.dropdown .dropdown__header, button.dropdown .dropdown__options {
 
 .dropdown.btn-danger .dropdown__options {
   background-color: #ED6454;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .dropdown:not(.dropdown--active) {
+    max-width: 250px;
+  }
+  .dropdown.dropdown--active {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .dropdown {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    max-width: 600px;
+  }
 }
 
 .tag {
@@ -463,16 +476,11 @@ main {
   }
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 991px) {
   .dropdowns {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-  }
-  .dropdown {
-    min-width: 320px;
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
   }
 }
 

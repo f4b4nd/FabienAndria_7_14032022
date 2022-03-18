@@ -11,10 +11,6 @@ button.dropdown {
 
     overflow: visible;
 
-    &:not(.dropdown--active) {
-        max-width: 250px;
-    }
-
     &:not(.dropdown--active) ul.dropdown__options {
         display: none;
     }
@@ -118,5 +114,22 @@ button.dropdown {
 
     .dropdown__options {
         background-color: $red;
+    }
+}
+
+@media screen and (min-width: $lg-minwidth) and (max-width: $lg-maxwidth) {
+    .dropdown:not(.dropdown--active) {
+        max-width: 250px;
+    }
+    .dropdown.dropdown--active {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: $md-maxwidth) {
+
+    .dropdown {
+        flex-basis: 100%;
+        max-width: 600px;
     }
 }

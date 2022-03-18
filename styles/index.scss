@@ -70,16 +70,12 @@ main {
     
 }
 
-@media screen and (max-width: $lg-maxwidth) {
+@media screen and (max-width: $md-maxwidth) {
     .dropdowns {
         justify-content: center;
     }
-
-    .dropdown {
-        min-width: 320px;
-        flex-basis: 50%;
-    }
 }
+
 
 @media screen and (min-width: $md-minwidth) and (max-width: $lg-maxwidth) {
     

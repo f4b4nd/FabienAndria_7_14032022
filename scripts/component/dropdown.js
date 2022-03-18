@@ -7,7 +7,7 @@ export class DropdownFactory {
         this.id = props.id
         this.label = props.label
         this.dataColor = props.dataColor
-        this.options = props.options
+        this.optionsDatas = props.optionsDatas
     }
 
     getComponent () {
@@ -23,7 +23,7 @@ export class DropdownFactory {
                 <span class="dropdown__arrowIcon"> <i class="fas fa-chevron-down"></i> </span>
             </div>
             <ul class="dropdown__options">
-                ${this.getOptionsInnerHTML(this.options)}
+                ${this.getOptionsInnerHTML(this.optionsDatas)}
             </ul> `
 
         return this.dropdown
@@ -31,8 +31,8 @@ export class DropdownFactory {
     }
 
     getOptionsInnerHTML () {
-        return this.options.reduce((acc, option) => {
-            const props = {option, dataColor: this.dataColor, dropdownID: this.dropdown.id}
+        return this.optionsDatas.reduce((acc, optionData) => {
+            const props = {optionData, dataColor: this.dataColor, dropdownID: this.dropdown.id}
             return acc + DropdownFactory.getOptionItemInnerHTML({props})
         }, '')
     }
@@ -40,12 +40,12 @@ export class DropdownFactory {
     static getOptionItemInnerHTML ({props}) {
         return `
             <li 
-                value="${props.option}"
+                value="${props.optionData}"
                 class="${'li-' + props.dataColor}"
                 data-origin="${props.dropdownID}"
                 data-color="${props.dataColor}"
             > 
-                ${props.option}
+                ${props.optionData}
             </li>`
     }
 
@@ -55,18 +55,17 @@ export class DropdownFactory {
     }
 
     static handleClickOnListItems (dropdown) {
-        // List Items are moved to tags on click
         const listItems = dropdown.querySelectorAll('li')
         listItems.forEach(li => li.addEventListener('click', moveDropdownItemToTags))
     }
 
     handleClickDropdownActive () {
-        // Dropdown switch from Active to Unactive when click on arrow
         const dropdownIcon = this.dropdown.querySelector('.dropdown__arrowIcon')
         dropdownIcon.addEventListener('click', () => {
             const dropdownIsActive = [...this.dropdown.classList].includes('dropdown--active')
             if (!dropdownIsActive) {
-                DropdownFactory.preventMultipleDropdownsActive()
+                // prevents multiple dropdowns to be active at the same time
+                DropdownFactory.setAllDropdownsInactive()
                 DropdownFactory.setDropdownActive(this.dropdown)
                 return
             }
@@ -88,7 +87,7 @@ export class DropdownFactory {
         dropdownIcon.classList.add('fa-chevron-up')
     }
 
-    static preventMultipleDropdownsActive () {
+    static setAllDropdownsInactive () {
         const activeDropdowns = document.querySelectorAll('.dropdown--active')
         if (activeDropdowns.length > 0) {
             activeDropdowns.forEach(dropdown => DropdownFactory.setDropdownInactive(dropdown))

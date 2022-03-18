@@ -15,7 +15,7 @@ export function moveDropdownItemToTags () {
     tags.appendChild(li)
 
     // remove from dropdown__options
-    const ul = this.closest('ul')
+    const ul = this.closest('ul.dropdown__options')
     ul.removeChild(this)
 
 }
@@ -28,7 +28,7 @@ export function moveTagToDropdownList () {
     const dropdown = document.getElementById(dropdownID)
 
     const props = {
-        option: tag.getAttribute('value'),
+        optionData: tag.getAttribute('value'),
         dropdownID: tag.getAttribute('data-origin'),
         dataColor: tag.getAttribute('data-color'),
     }
