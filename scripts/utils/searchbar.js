@@ -1,7 +1,12 @@
 import { displayRecipes } from "../index.js"
 import recipes from "../../data/recipes.js"
 
-function handleInputChange (event) {
+export function searchBarListener () {
+    const searchBarInput = document.getElementById('search-bar')
+    searchBarInput.addEventListener('input', handleSearchBarInputChange)
+}
+
+function handleSearchBarInputChange (event) {
 
     const searchTerm = event.target.value
 
@@ -19,9 +24,13 @@ function searchBarEngine (recipes, searchTerm) {
 
     const term = searchTerm.toLocaleLowerCase()
 
-    return recipes.filter(recipe => titleEngine(recipe, term) || ingredientEngine(recipe, term) || descriptionEngine(recipe, term))
+    return recipes.filter(recipe => {
+        return titleEngine(recipe, term) || ingredientEngine(recipe, term) || descriptionEngine(recipe, term)
+    })
 
 }
+
+/****/
 
 const titleEngine = (recipe, term) => recipe.name.toLocaleLowerCase().includes(term)
 
@@ -31,8 +40,3 @@ const ingredientEngine = (recipe, term) => {
 }
 
 const descriptionEngine = (recipe, term) => recipe.description.toLocaleLowerCase().includes(term)
-
-export function searchBarListener () {
-    const searchBarInput = document.getElementById('search-bar')
-    searchBarInput.addEventListener('input', handleInputChange)
-}

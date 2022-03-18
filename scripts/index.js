@@ -1,6 +1,6 @@
 import recipes from '../data/recipes.js'
-import { getCardComponent } from './component/card.js'
-import { DropdownFactory } from './component/dropdown.js'
+import { getCardComponent } from './components/card.js'
+import { DropdownFactory } from './components/dropdown.js'
 import { getIngredients, getAppliances, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 import { searchBarListener } from './utils/searchbar.js'
@@ -23,7 +23,7 @@ function displayDropdowns () {
             id: 'ingredient-dropdown',
             label: 'Ingrédient',
             dataColor: 'primary',
-            optionsDatas: getIngredients(recipes).sort()
+            optionsDatas: []
         },
         {
             id: 'appliance-dropdown',

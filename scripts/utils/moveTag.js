@@ -1,5 +1,5 @@
-import { getTagComponent } from "../component/tag.js"
-import { DropdownFactory } from "../component/dropdown.js"
+import { getTagComponent } from "../components/tag.js"
+import { DropdownFactory } from "../components/dropdown.js"
 
 export function moveDropdownItemToTags () {
 
