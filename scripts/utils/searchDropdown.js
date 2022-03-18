@@ -1,8 +1,10 @@
 import recipes from "../../data/recipes.js"
-import { getIngredients } from "../getData"
+import { DropdownFactory } from "../components/dropdown.js"
+import { getIngredients } from "../getData.js"
+import clearHTMLNode from "./clearHTML.js"
 
 
-export function DropdownInputListener () {
+export function dropdownInputListener () {
     const input = document.querySelector('#ingredient-dropdown input')
     input.addEventListener('input', handleDropdownInputChange)
 }
@@ -16,21 +18,31 @@ function handleDropdownInputChange (event) {
         return
     }
 
-    const datas = searchDropdownEngine(recipes, searchTerm)
+    const datas = searchDropdownEngine(searchTerm)
 
     setDropdownData(datas)
 }
 
-function setDropdownData () {
-    const dropdownOptionsDOM = document.querySelector('ul.dropdown__options')
+function setDropdownData (datas) {
+    const dropdownOptions = document.querySelector('ul.dropdown__options')
+
+    clearHTMLNode(dropdownOptions)
+
+    datas.forEach(data => {
+        const props = {optionData: data, dropdownID: 'ingredient-dropdown', dataColor: 'primary'}
+        const option = DropdownFactory.getOptionItemInnerHTML({props})
+        dropdownOptions.insertAdjacentHTML('beforeend', option)
+    })
+}
+
+function searchDropdownEngine (searchTerm) {
+    const term = searchTerm.toLocaleLowerCase()
+    const filteredIngredients = ingredientEngine(term)
+    return filteredIngredients
 
 }
 
-function searchDropdownEngine (recipes, searchTerm) {
-
-    const term = searchTerm.toLocaleLowerCase()
-
-    const datas = getIngredients(recipes)
-
-    //return datas.filter(item => )
+function ingredientEngine (searchTerm) {
+    const data = getIngredients(recipes)
+    return data.filter(ingredient => ingredient.toLocaleLowerCase().includes(searchTerm))
 }

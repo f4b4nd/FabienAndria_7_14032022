@@ -1,9 +1,10 @@
 import recipes from '../data/recipes.js'
 import { getCardComponent } from './components/card.js'
 import { DropdownFactory } from './components/dropdown.js'
-import { getIngredients, getAppliances, getUstensils } from './getData.js'
+import { getAppliances, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 import { searchBarListener } from './utils/searchbar.js'
+import { dropdownInputListener } from './utils/searchDropdown.js'
 
 export function displayRecipes (recipesData) {
 
@@ -52,6 +53,7 @@ function displayDropdowns () {
 function init () {
     displayDropdowns()
     searchBarListener()
+    dropdownInputListener()
 }
 
 init ()
