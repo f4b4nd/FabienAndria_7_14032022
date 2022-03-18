@@ -2,12 +2,15 @@ import recipes from '../data/recipes.js'
 import { getCardComponent } from './component/card.js'
 import { DropdownFactory } from './component/dropdown.js'
 import { getIngredients, getAppliances, getUstensils } from './getData.js'
+import clearHTMLNode from './utils/clearHTML.js'
+import { searchBarListener } from './utils/search.js'
 
-function displayResults () {
+export function displayRecipes (recipesData) {
 
     const resultsDOM = document.querySelector('#results')
+    clearHTMLNode(resultsDOM)
 
-    recipes.forEach(recipe => {
+    recipesData.forEach(recipe => {
         const card = getCardComponent({props: recipe})
         resultsDOM.appendChild(card)
     })
@@ -47,8 +50,8 @@ function displayDropdowns () {
 
 
 function init () {
-    displayResults()
     displayDropdowns()
+    searchBarListener()
 }
 
 init ()
