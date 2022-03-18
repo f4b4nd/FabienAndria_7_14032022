@@ -3,7 +3,7 @@ import { getCardComponent } from './component/card.js'
 import { DropdownFactory } from './component/dropdown.js'
 import { getIngredients, getAppliances, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
-import { searchBarListener } from './utils/search.js'
+import { searchBarListener } from './utils/searchbar.js'
 
 export function displayRecipes (recipesData) {
 
