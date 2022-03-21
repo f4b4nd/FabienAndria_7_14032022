@@ -1,7 +1,7 @@
 import recipes from '../data/recipes.js'
 import { getCardComponent } from './components/card.js'
 import { DropdownFactory } from './components/dropdown.js'
-import { getAppliances, getUstensils } from './getData.js'
+import { getAppliances, getIngredients, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 import { searchBarListener } from './utils/searchbar.js'
 import { dropdownInputListener } from './utils/searchDropdown.js'
@@ -30,13 +30,13 @@ function displayDropdowns () {
             id: 'appliance-dropdown',
             label: 'Appareil',
             dataColor: 'success',
-            optionsDatas: getAppliances(recipes).sort()
+            optionsDatas: []
         },
         {
             id: 'ustensil-dropdown',
             label: 'Ustensile',
             dataColor: 'danger',
-            optionsDatas: getUstensils(recipes).sort()
+            optionsDatas: []
         }
     ]
 
@@ -54,6 +54,9 @@ function init () {
     displayDropdowns()
     searchBarListener()
     dropdownInputListener()
+    console.log(getIngredients(recipes).sort())
+    console.log(getAppliances(recipes).sort())
+    console.log(getUstensils(recipes).sort())
 }
 
 init ()

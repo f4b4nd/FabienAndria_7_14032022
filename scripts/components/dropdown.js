@@ -16,6 +16,7 @@ export class DropdownFactory {
 
         this.dropdown.classList.add('dropdown')
         this.dropdown.classList.add('btn-' + this.dataColor)
+        this.dropdown.setAttribute('data-color', this.dataColor)
 
         this.dropdown.innerHTML = `
             <div class="dropdown__header">
