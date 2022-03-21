@@ -24,9 +24,9 @@ function searchBarEngine (recipes, searchTerm) {
 
     const term = searchTerm.toLocaleLowerCase()
 
-    return recipes.filter(recipe => {
-        return titleEngine(recipe, term) || ingredientEngine(recipe, term) || descriptionEngine(recipe, term)
-    })
+    return recipes.filter(recipe => (
+        titleEngine(recipe, term) || ingredientEngine(recipe, term) || descriptionEngine(recipe, term)
+    ))
 
 }
 

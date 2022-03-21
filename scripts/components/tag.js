@@ -1,4 +1,4 @@
-import { moveTagToDropdownList } from "../utils/moveTag.js"
+import { moveTagToDropdown } from "../utils/moveTag.js"
 
 
 export const getTagComponent = ({props}) => {
@@ -17,7 +17,7 @@ export const getTagComponent = ({props}) => {
         <span class="icon"> <i class="fas fa-xmark"> </i> </span> `
 
     const tagIcon = tag.querySelector('.icon')
-    tagIcon.addEventListener('click', moveTagToDropdownList)
+    tagIcon.addEventListener('click', moveTagToDropdown)
 
     return tag
 

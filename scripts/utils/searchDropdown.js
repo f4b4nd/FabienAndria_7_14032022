@@ -4,7 +4,7 @@ import { getAppliances, getIngredients, getUstensils } from "../getData.js"
 import clearHTMLNode from "./clearHTML.js"
 
 
-export function dropdownInputListener () {
+export function dropdownsInputsListener () {
     const dropdowns = document.querySelectorAll('.dropdown')
     dropdowns.forEach(dropdown => {
         const input = dropdown.querySelector('input')
@@ -18,46 +18,56 @@ function handleDropdownInputChange (event) {
     const searchTerm = event.target.value
 
     if (searchTerm.length < 3) {
-        setDropdownData(dropdown, [])
+        setDropdownTags(dropdown, [])
         return
     }
 
-    const datas = searchDropdownEngine(dropdown, searchTerm)
+    const tags = dropdownSearchEngine(dropdown, searchTerm)
 
-    setDropdownData(dropdown, datas)
+    setDropdownTags(dropdown, tags)
 
 }
 
-function setDropdownData (dropdown, datas) {
+function setDropdownTags (dropdown, tags) {
 
-    const dropdownOptions = dropdown.querySelector('ul.dropdown__options')
+    const dropdownTags = dropdown.querySelector('ul.dropdown__tags')
 
-    clearHTMLNode(dropdownOptions)
+    clearHTMLNode(dropdownTags)
 
-    datas.forEach(data => {
+    tags.forEach(tag => {
         const props = {
-            optionData: data,
+            tag: tag,
             dropdownID: dropdown.getAttribute('id'),
             dataColor: dropdown.getAttribute('data-color')
         }
-        const option = DropdownFactory.getOptionItemInnerHTML({props})
-        dropdownOptions.insertAdjacentHTML('beforeend', option)
+        const dropdownTag = DropdownFactory.getTagItemInnerHTML({props})
+        dropdownTags.insertAdjacentHTML('beforeend', dropdownTag)
     })
+
     // restore eventlistener
-    DropdownFactory.handleClickOnListItems(dropdown)
+    DropdownFactory.handleClickOnDropdownTags(dropdown)
+
+    if (tags.length > 0) DropdownFactory.setDropdownActive(dropdown)
 
 }
 
-function searchDropdownEngine (dropdown, searchTerm) {
+function dropdownSearchEngine (dropdown, searchTerm) {
+
     const term = searchTerm.toLocaleLowerCase()
+
     const dropdownID = dropdown.getAttribute('id')
+
     switch (dropdownID) {
+
         case 'ingredient-dropdown':
             return ingredientEngine(term)
+
         case 'appliance-dropdown':
             return applianceEngine(term)
+
         case 'ustensil-dropdown':
             return ustensilEngine(term)
+
     }
 }
 

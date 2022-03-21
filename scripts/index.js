@@ -4,7 +4,7 @@ import { DropdownFactory } from './components/dropdown.js'
 import { getAppliances, getIngredients, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 import { searchBarListener } from './utils/searchbar.js'
-import { dropdownInputListener } from './utils/searchDropdown.js'
+import { dropdownsInputsListener } from './utils/searchDropdown.js'
 
 export function displayRecipes (recipesData) {
 
@@ -24,19 +24,19 @@ function displayDropdowns () {
             id: 'ingredient-dropdown',
             label: 'Ingrédient',
             dataColor: 'primary',
-            optionsDatas: []
+            tags: []
         },
         {
             id: 'appliance-dropdown',
             label: 'Appareil',
             dataColor: 'success',
-            optionsDatas: []
+            tags: []
         },
         {
             id: 'ustensil-dropdown',
             label: 'Ustensile',
             dataColor: 'danger',
-            optionsDatas: []
+            tags: []
         }
     ]
 
@@ -53,7 +53,7 @@ function displayDropdowns () {
 function init () {
     displayDropdowns()
     searchBarListener()
-    dropdownInputListener()
+    dropdownsInputsListener()
     console.log(getIngredients(recipes).sort())
     console.log(getAppliances(recipes).sort())
     console.log(getUstensils(recipes).sort())
