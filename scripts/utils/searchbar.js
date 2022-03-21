@@ -58,12 +58,17 @@ function getResultsFilteredByTags (results) {
         const dropdownID = tag.getAttribute('data-origin')
         const tagValue = tag.getAttribute('value')
 
-        return {...acc, [dropdownID] : [...acc[dropdownID] || [], tagValue]}
+        return {
+            ...acc,
+            [dropdownID] : [
+                ...acc[dropdownID] || [],
+                tagValue
+            ]
+        }
 
     }, {})
 
-    console.log('gr', tagsGroupedByDropdownID)
-
+    console.log(tagsGroupedByDropdownID)
     return results.filter(recipe => tagEngine(recipe, tagsGroupedByDropdownID))
 }
 
@@ -73,9 +78,8 @@ const tagEngine = (recipe, tags) => (
 
 const ingredientTagEngine = (recipe, tags) => {
     const ingredientTags = tags['ingredient-dropdown']
-    console.log('ing', ingredientTags)
     if (!ingredientTags) return true
-    return ingredientTags.includes(recipe.appliance)
+    return recipe.ingredients.filter(ingredient => ingredientTags.includes(ingredient.ingredient)).length > 0
 }
 
 const applianceTagEngine = (recipe, tags) => {
@@ -87,5 +91,5 @@ const applianceTagEngine = (recipe, tags) => {
 const ustensilTagEngine = (recipe, tags) => {
     const ustensilTags = tags['ustensil-dropdown']
     if (!ustensilTags) return true
-    return ustensilTags.includes(recipe.appliance)
+    return recipe.ustensils.filter(ustensil => ustensilTags.includes(ustensil)).length > 0
 }
