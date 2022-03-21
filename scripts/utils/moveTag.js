@@ -1,5 +1,7 @@
 import { getTagComponent } from "../components/tag.js"
 import { DropdownFactory } from "../components/dropdown.js"
+import { launchSearch } from "./searchbar.js"
+import recipes from "../../data/recipes.js"
 
 // from .dropdown__tags to #tags
 export function moveDropdownTagItemToTags () {
@@ -18,6 +20,9 @@ export function moveDropdownTagItemToTags () {
     // remove from dropdown__options
     const ul = this.closest('ul.dropdown__tags')
     ul.removeChild(this)
+
+    // launch search if search-bar input is not empty
+    updateSearchOnTagEvent()
 
 }
 
@@ -46,4 +51,14 @@ export function moveTagToDropdown () {
     const tags = this.closest('ul')
     tags.removeChild(tag)
 
+    // launch search if search-bar input is not empty
+    updateSearchOnTagEvent()
+
+}
+
+function updateSearchOnTagEvent () {
+    const inputSearchValue = document.querySelector('#search-bar').value
+    if (inputSearchValue) {
+        launchSearch(recipes, inputSearchValue)
+    }
 }
