@@ -17,6 +17,8 @@ function handleDropdownInputChange (event) {
     const dropdown = this.closest('.dropdown')
     const searchTerm = event.target.value
 
+    if (searchTerm.length > 0) DropdownFactory.setDropdownActive(dropdown)
+
     if (searchTerm.length < 3) {
         setDropdownTags(dropdown, [])
         return
@@ -54,8 +56,6 @@ function setDropdownTags (dropdown, tags) {
 
     // restore eventlistener
     DropdownFactory.handleClickOnDropdownTags(dropdown)
-
-    if (tagsNotSelected.length > 0) DropdownFactory.setDropdownActive(dropdown)
 
 }
 

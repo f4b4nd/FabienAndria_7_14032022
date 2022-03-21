@@ -55,10 +55,12 @@ export function launchSearch({props}) {
 
     const {useSearchBarInput, searchTerm} = props
 
+    //  search only with tags
     if (!useSearchBarInput) {
         let results = getResultsFilteredByTags (recipes)
         displayRecipes(results)
     }
+    // search with tags + search-bar-input
     else {
         let results = searchBarEngine(recipes, searchTerm)
         results = getResultsFilteredByTags (results)

@@ -20,7 +20,7 @@ export class DropdownFactory {
 
         this.dropdown.innerHTML = `
             <div class="dropdown__header">
-                <input class="dropdown__input" type="text" value="${this.label}s" placeholder="Rechercher un ${this.label.toLowerCase()}"> 
+                <input class="dropdown__input" type="text" value="${this.label}s" placeholder="Rechercher un ${this.label.toLowerCase()}" data-initial="${this.label}s"> 
                 <span class="dropdown__arrowIcon"> <i class="fas fa-chevron-down"></i> </span>
             </div>
             <ul class="dropdown__tags">
@@ -62,6 +62,7 @@ export class DropdownFactory {
     }
 
     handleClickDropdownActive () {
+
         const dropdownIcon = this.dropdown.querySelector('.dropdown__arrowIcon')
         dropdownIcon.addEventListener('click', () => {
             const dropdownIsActive = [...this.dropdown.classList].includes('dropdown--active')
@@ -69,16 +70,19 @@ export class DropdownFactory {
                 DropdownFactory.setDropdownActive(this.dropdown)
                 return
             }
-            DropdownFactory.setDropdownInactive(this.dropdown, this.label)
+            DropdownFactory.setDropdownInactive(this.dropdown)
         })
+
+        const input = this.dropdown.querySelector('input')
+        input.addEventListener('click', function () { this.value = ''})
     }
 
-    static setDropdownInactive (dropdown, initialInputLabel) {
+    static setDropdownInactive (dropdown) {
         dropdown.classList.remove('dropdown--active')
         const dropdownIcon = dropdown.querySelector('i')
         dropdownIcon.classList.remove('fa-chevron-up')
         dropdownIcon.classList.add('fa-chevron-down')
-        DropdownFactory.setInitialInputLabel(dropdown, initialInputLabel)
+        DropdownFactory.setInitialInputLabel(dropdown)
     }
 
     static setDropdownActive (dropdown) {
@@ -88,15 +92,16 @@ export class DropdownFactory {
         dropdownIcon.classList.add('fa-chevron-up')
     }
 
-    static setInitialInputLabel(dropdown, initialInputLabel) {
+    static setInitialInputLabel(dropdown) {
         const input = dropdown.querySelector('input')
-        input.value = `${initialInputLabel}s`
+        input.value = input.getAttribute('data-initial')
     }
 
     setDropdownUnfocus () {
+        // set dropdown inactive when click anywhere else on the page
         document.addEventListener('click', (e) => {
             if (!this.dropdown.contains(e.target)) {
-                DropdownFactory.setDropdownInactive(this.dropdown, this.label)
+                DropdownFactory.setDropdownInactive(this.dropdown)
             }
         })
     }
