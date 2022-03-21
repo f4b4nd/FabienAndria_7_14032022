@@ -53,6 +53,7 @@ export class DropdownFactory {
     handleEvents () {
         this.handleClickDropdownActive()
         DropdownFactory.handleClickOnDropdownTags(this.dropdown)
+        this.setDropdownUnfocus()
     }
 
     static handleClickOnDropdownTags (dropdown) {
@@ -65,20 +66,19 @@ export class DropdownFactory {
         dropdownIcon.addEventListener('click', () => {
             const dropdownIsActive = [...this.dropdown.classList].includes('dropdown--active')
             if (!dropdownIsActive) {
-                // prevents multiple dropdowns to be active at the same time
-                DropdownFactory.setAllDropdownsInactive()
                 DropdownFactory.setDropdownActive(this.dropdown)
                 return
             }
-            DropdownFactory.setDropdownInactive(this.dropdown)
+            DropdownFactory.setDropdownInactive(this.dropdown, this.label)
         })
     }
 
-    static setDropdownInactive (dropdown) {
+    static setDropdownInactive (dropdown, initialInputLabel) {
         dropdown.classList.remove('dropdown--active')
         const dropdownIcon = dropdown.querySelector('i')
         dropdownIcon.classList.remove('fa-chevron-up')
         dropdownIcon.classList.add('fa-chevron-down')
+        DropdownFactory.setInitialInputLabel(dropdown, initialInputLabel)
     }
 
     static setDropdownActive (dropdown) {
@@ -88,11 +88,16 @@ export class DropdownFactory {
         dropdownIcon.classList.add('fa-chevron-up')
     }
 
-    static setAllDropdownsInactive () {
-        const activeDropdowns = document.querySelectorAll('.dropdown--active')
-        if (activeDropdowns.length > 0) {
-            activeDropdowns.forEach(dropdown => DropdownFactory.setDropdownInactive(dropdown))
-        }
+    static setInitialInputLabel(dropdown, initialInputLabel) {
+        const input = dropdown.querySelector('input')
+        input.value = `${initialInputLabel}s`
     }
 
+    setDropdownUnfocus () {
+        document.addEventListener('click', (e) => {
+            if (!this.dropdown.contains(e.target)) {
+                DropdownFactory.setDropdownInactive(this.dropdown, this.label)
+            }
+        })
+    }
 }
