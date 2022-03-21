@@ -1,26 +1,26 @@
-export function getResultsFilteredByTags (results) {
+export function tagsEngine (recipes) {
 
     const tags = document.querySelectorAll('#tags li')
     if (tags.length === 0) {
-        return results
+        return recipes
     }
 
-    const tagsGroupedByDropdownID = [...tags].reduce((acc, tag) => {
-        const dropdownID = tag.getAttribute('data-origin')
+    const tagsGroupedByDataOrigin = [...tags].reduce((acc, tag) => {
+        const tagOrigin = tag.getAttribute('data-origin')
         const tagValue = tag.getAttribute('value')
         return {
             ...acc,
-            [dropdownID] : [
-                ...acc[dropdownID] || [],
+            [tagOrigin] : [
+                ...acc[tagOrigin] || [],
                 tagValue
             ]
         }
     }, {})
 
-    return results.filter(recipe => tagEngine(recipe, tagsGroupedByDropdownID))
+    return recipes.filter(recipe => recipeTagEngine(recipe, tagsGroupedByDataOrigin))
 }
 
-const tagEngine = (recipe, tags) => (
+const recipeTagEngine = (recipe, tags) => (
     ingredientTagEngine(recipe, tags) && applianceTagEngine(recipe, tags) && ustensilTagEngine(recipe, tags)
 )
 

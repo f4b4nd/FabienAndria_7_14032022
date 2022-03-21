@@ -3,10 +3,10 @@ import { getCardComponent } from './components/card.js'
 import { DropdownFactory } from './components/dropdown.js'
 import { getAppliances, getIngredients, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
-import { searchBarListener } from './utils/searchbar.js'
-import { dropdownsInputsListener } from './utils/searchDropdown.js'
-import { searchBarEngine } from './utils/searchbar.js'
-import { getResultsFilteredByTags } from './utils/searchTags.js'
+
+import { searchBarListener, searchBarInputEngine } from './engines/searchbarEngine.js'
+import { dropdownsInputsListener } from './engines/dropdownTagsEngine.js'
+import { tagsEngine } from './engines/tagsEngine.js'
 
 export function displayRecipes (recipesData) {
 
@@ -57,13 +57,13 @@ export function launchSearch({props}) {
 
     //  search only with tags
     if (!useSearchBarInput) {
-        let results = getResultsFilteredByTags (recipes)
+        let results = tagsEngine(recipes)
         displayRecipes(results)
     }
     // search with tags + search-bar-input
     else {
-        let results = searchBarEngine(recipes, searchTerm)
-        results = getResultsFilteredByTags (results)
+        let results = searchBarInputEngine(recipes, searchTerm)
+        results = tagsEngine(results)
         displayRecipes(results)
     }
 

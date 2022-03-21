@@ -57,17 +57,18 @@ export function moveTagToDropdown () {
 
 function updateSearchOnTagEvent () {
 
-    // reset display if the last tag is removed
     const hasSelectedTags = document.querySelectorAll('#tags li').length > 0
-    if (!hasSelectedTags) {
+    const inputSearchValue = document.querySelector('#search-bar-input').value || null
+
+    // reset display if the last tag is removed and no search-bar-input
+    if (!hasSelectedTags && !inputSearchValue) {
         displayRecipes([])
         return
     }
 
-    const inputSearchValue = document.querySelector('#search-bar-input').value
     const props = {
-        useSearchBarInput: inputSearchValue || false,
-        searchTerm: inputSearchValue || null
+        useSearchBarInput: inputSearchValue,
+        searchTerm: inputSearchValue
     }
     launchSearch({props})
 

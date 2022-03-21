@@ -1,7 +1,7 @@
 import recipes from "../../data/recipes.js"
 import { DropdownFactory } from "../components/dropdown.js"
 import { getAppliances, getIngredients, getUstensils } from "../getData.js"
-import clearHTMLNode from "./clearHTML.js"
+import clearHTMLNode from "../utils/clearHTML.js"
 
 
 export function dropdownsInputsListener () {
@@ -24,7 +24,7 @@ function handleDropdownInputChange (event) {
         return
     }
 
-    const tags = dropdownSearchEngine(dropdown, searchTerm)
+    const tags = dropdownTagsEngine(dropdown, searchTerm)
 
     setDropdownTags(dropdown, tags)
 
@@ -59,22 +59,22 @@ function setDropdownTags (dropdown, tags) {
 
 }
 
-function dropdownSearchEngine (dropdown, searchTerm) {
+function dropdownTagsEngine (dropdown, searchTerm) {
 
-    const term = searchTerm.toLocaleLowerCase()
+    const searchTermLowerCase = searchTerm.toLocaleLowerCase()
 
     const dropdownID = dropdown.getAttribute('id')
 
     switch (dropdownID) {
 
         case 'ingredient-dropdown':
-            return ingredientEngine(term)
+            return ingredientEngine(searchTermLowerCase)
 
         case 'appliance-dropdown':
-            return applianceEngine(term)
+            return applianceEngine(searchTermLowerCase)
 
         case 'ustensil-dropdown':
-            return ustensilEngine(term)
+            return ustensilEngine(searchTermLowerCase)
 
     }
 }

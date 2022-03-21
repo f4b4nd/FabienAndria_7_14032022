@@ -20,7 +20,7 @@ function handleSearchBarInputChange (event) {
 }
 
 
-export function searchBarEngine (recipes, searchTerm) {
+export function searchBarInputEngine (recipes, searchTerm) {
 
     const searchTermLowerCase = searchTerm.toLocaleLowerCase()
 
