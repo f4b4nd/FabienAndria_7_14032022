@@ -28,13 +28,21 @@ function handleDropdownInputChange (event) {
 
 }
 
+function getTagsNotSelected (tags) {
+    const selectedTags = document.querySelectorAll('#tags li')
+    const selectedValues = [...selectedTags].map(tag => tag.getAttribute('value'))
+    return tags.filter(tag => !selectedValues.includes(tag))
+}
+
 function setDropdownTags (dropdown, tags) {
 
     const dropdownTags = dropdown.querySelector('ul.dropdown__tags')
+    const tagsNotSelected = getTagsNotSelected(tags)
 
     clearHTMLNode(dropdownTags)
 
-    tags.forEach(tag => {
+    // display only tags that are not already selected
+    tagsNotSelected.forEach(tag => {
         const props = {
             tag: tag,
             dropdownID: dropdown.getAttribute('id'),
