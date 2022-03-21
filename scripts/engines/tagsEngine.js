@@ -27,17 +27,23 @@ const recipeTagEngine = (recipe, tags) => (
 const ingredientTagEngine = (recipe, tags) => {
     const ingredientTags = tags['ingredient-dropdown']
     if (!ingredientTags) return true
-    return recipe.ingredients.filter(ingredient => ingredientTags.includes(ingredient.ingredient)).length > 0
+    const filteredIngredients = recipe.ingredients.filter(ingredient => ingredientTags.includes(ingredient.ingredient))
+    const recipeMatches = filteredIngredients.length >= ingredientTags.length
+    return recipeMatches
 }
 
 const applianceTagEngine = (recipe, tags) => {
     const applianceTags = tags['appliance-dropdown']
     if (!applianceTags) return true
-    return applianceTags.includes(recipe.appliance)
+    if (applianceTags.length !== 1) return false
+    const recipeMatches = applianceTags[0] === recipe.appliance
+    return recipeMatches
 }
 
 const ustensilTagEngine = (recipe, tags) => {
     const ustensilTags = tags['ustensil-dropdown']
     if (!ustensilTags) return true
-    return recipe.ustensils.filter(ustensil => ustensilTags.includes(ustensil)).length > 0
+    const filteredUstensils = recipe.ustensils.filter(ustensil => ustensilTags.includes(ustensil))
+    const recipeMatches = filteredUstensils.length >= ustensilTags.length
+    return recipeMatches
 }
