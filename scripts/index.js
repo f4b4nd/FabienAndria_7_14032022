@@ -5,6 +5,8 @@ import { getAppliances, getIngredients, getUstensils } from './getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 import { searchBarListener } from './utils/searchbar.js'
 import { dropdownsInputsListener } from './utils/searchDropdown.js'
+import { searchBarEngine } from './utils/searchbar.js'
+import { getResultsFilteredByTags } from './utils/searchTags.js'
 
 export function displayRecipes (recipesData) {
 
@@ -49,6 +51,21 @@ function displayDropdowns () {
     })
 }
 
+export function launchSearch({props}) {
+
+    const {useSearchBarInput, searchTerm} = props
+
+    if (!useSearchBarInput) {
+        let results = getResultsFilteredByTags (recipes)
+        displayRecipes(results)
+    }
+    else {
+        let results = searchBarEngine(recipes, searchTerm)
+        results = getResultsFilteredByTags (results)
+        displayRecipes(results)
+    }
+
+}
 
 function init () {
     displayDropdowns()

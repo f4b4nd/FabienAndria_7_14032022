@@ -55,7 +55,7 @@ function setDropdownTags (dropdown, tags) {
     // restore eventlistener
     DropdownFactory.handleClickOnDropdownTags(dropdown)
 
-    if (tags.length > 0) DropdownFactory.setDropdownActive(dropdown)
+    if (tagsNotSelected.length > 0) DropdownFactory.setDropdownActive(dropdown)
 
 }
 
@@ -80,16 +80,16 @@ function dropdownSearchEngine (dropdown, searchTerm) {
 }
 
 const ingredientEngine = (searchTerm) => {
-    const data = getIngredients(recipes)
-    return data.filter(ingredient => ingredient.toLocaleLowerCase().includes(searchTerm))
+    const ingredients = getIngredients(recipes)
+    return ingredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(searchTerm))
 }
 
 const applianceEngine = (searchTerm) => {
-    const data = getAppliances(recipes)
-    return data.filter(appliance => appliance.toLocaleLowerCase().includes(searchTerm))
+    const appliances = getAppliances(recipes)
+    return appliances.filter(appliance => appliance.toLocaleLowerCase().includes(searchTerm))
 }
 
 const ustensilEngine = (searchTerm) => {
-    const data = getUstensils(recipes)
-    return data.filter(ustensil => ustensil.toLocaleLowerCase().includes(searchTerm))
+    const ustensils = getUstensils(recipes)
+    return ustensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(searchTerm))
 }

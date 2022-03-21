@@ -1,7 +1,6 @@
 import { getTagComponent } from "../components/tag.js"
 import { DropdownFactory } from "../components/dropdown.js"
-import { launchSearch } from "./searchbar.js"
-import recipes from "../../data/recipes.js"
+import { launchSearch } from "../index.js"
 
 // from .dropdown__tags to #tags
 export function moveDropdownTagItemToTags () {
@@ -57,8 +56,10 @@ export function moveTagToDropdown () {
 }
 
 function updateSearchOnTagEvent () {
-    const inputSearchValue = document.querySelector('#search-bar').value
-    if (inputSearchValue) {
-        launchSearch(recipes, inputSearchValue)
+    const inputSearchValue = document.querySelector('#search-bar-input').value
+    const props = {
+        useSearchBarInput: inputSearchValue || false,
+        searchTerm: inputSearchValue || null
     }
+    launchSearch({props})
 }

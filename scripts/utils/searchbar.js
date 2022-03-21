@@ -1,9 +1,8 @@
 import { displayRecipes } from "../index.js"
-import recipes from "../../data/recipes.js"
-import { getResultsFilteredByTags } from "./searchTags.js"
+import { launchSearch } from "../index.js"
 
 export function searchBarListener () {
-    const searchBarInput = document.getElementById('search-bar')
+    const searchBarInput = document.querySelector('#search-bar-input')
     searchBarInput.addEventListener('input', handleSearchBarInputChange)
 }
 
@@ -15,28 +14,19 @@ function handleSearchBarInputChange (event) {
         displayRecipes([])
         return
     }
-
-    launchSearch(recipes, searchTerm)
+    const props = {useSearchBarInput: true, searchTerm}
+    launchSearch({props})
 
 }
 
-export function launchSearch(recipes, searchTerm) {
-    const results = searchBarEngine(recipes, searchTerm)
-    displayRecipes(results)
-}
 
+export function searchBarEngine (recipes, searchTerm) {
 
-function searchBarEngine (recipes, searchTerm) {
+    const searchTermLowerCase = searchTerm.toLocaleLowerCase()
 
-    const term = searchTerm.toLocaleLowerCase()
-
-    const resultsBySearchTerms = recipes.filter(recipe => (
-        titleEngine(recipe, term) || ingredientEngine(recipe, term) || descriptionEngine(recipe, term)
+    return recipes.filter(recipe => (
+        titleEngine(recipe, searchTermLowerCase) || ingredientEngine(recipe, searchTermLowerCase) || descriptionEngine(recipe, searchTermLowerCase)
     ))
-
-    const filteredResults = getResultsFilteredByTags (resultsBySearchTerms)
-
-    return filteredResults
 }
 
 /****/
