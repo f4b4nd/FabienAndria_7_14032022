@@ -30,8 +30,8 @@ function handleDropdownInputChange (event) {
 
 function getTagsNotSelected (tags) {
     const selectedTags = document.querySelectorAll('#tags li')
-    const selectedValues = [...selectedTags].map(tag => tag.getAttribute('value'))
-    return tags.filter(tag => !selectedValues.includes(tag))
+    const selectedTagsValues = [...selectedTags].map(tag => tag.getAttribute('value'))
+    return tags.filter(tag => !selectedTagsValues.includes(tag))
 }
 
 function setDropdownTags (dropdown, tags) {
