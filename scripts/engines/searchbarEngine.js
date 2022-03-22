@@ -1,4 +1,4 @@
-import { displayRecipes, searchEngine } from "../index.js"
+import { displayRecipes, searchEngine, resetSearchOnEmptyParameters } from "../index.js"
 
 export function searchBarListener () {
     const searchBarInput = document.querySelector('#search-bar-input')
@@ -6,6 +6,8 @@ export function searchBarListener () {
 }
 
 function handleSearchBarInputChange (event) {
+
+    resetSearchOnEmptyParameters({input: this})
 
     const searchTerm = event.target.value
 
@@ -17,7 +19,6 @@ function handleSearchBarInputChange (event) {
     searchEngine.setResultsFromSearchBar(searchTerm)
 
 }
-
 
 export function searchBarInputEngine (recipes, searchTerm) {
 

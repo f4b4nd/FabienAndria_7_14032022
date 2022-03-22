@@ -22,6 +22,17 @@ export function displayRecipes (recipesData) {
 
 }
 
+export function resetSearchOnEmptyParameters (props) {
+
+    const tags = props.tags || document.querySelectorAll('#tags li')
+    const input = props.input || document.querySelector('#search-bar-input')
+
+    if (input.value === '' && tags.length === 0) {
+        console.log('reset')
+        searchEngine.resetSearch()
+    }
+}
+
 function displayDropdowns () {
     const dropdowns = [
         {

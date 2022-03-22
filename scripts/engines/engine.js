@@ -40,6 +40,7 @@ export class SearchEngine {
     resetSearch () {
         this.results = recipes
         this.tags = {}
+        displayRecipes([])
     }
 
 }
