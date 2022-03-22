@@ -1,6 +1,6 @@
 import recipes from "../../data/recipes.js"
 import { DropdownFactory } from "../components/dropdown.js"
-import { getAppliances, getIngredients, getUstensils } from "../getData.js"
+import { getAppliances, getIngredients, getUstensils } from "../utils/getData.js"
 import clearHTMLNode from "../utils/clearHTML.js"
 
 
@@ -78,6 +78,7 @@ function dropdownTagsEngine (dropdown, searchTerm) {
 
     }
 }
+
 
 const ingredientEngine = (searchTerm) => {
     const ingredients = getIngredients(recipes)

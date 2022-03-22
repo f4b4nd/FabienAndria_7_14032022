@@ -1,6 +1,6 @@
 import { getTagComponent } from "../components/tag.js"
 import { DropdownFactory } from "../components/dropdown.js"
-import { displayRecipes, launchSearch } from "../index.js"
+import { displayRecipes, searchEngine, launchSearch } from "../index.js"
 
 // from .dropdown__tags to #tags
 export function moveDropdownTagItemToTags () {
@@ -22,6 +22,7 @@ export function moveDropdownTagItemToTags () {
 
     // launch search if search-bar input is not empty
     updateSearchOnTagEvent()
+    searchEngine.addTag({value: this.getAttribute('value'), origin: this.getAttribute('data-origin')})
 
 }
 

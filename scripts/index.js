@@ -1,12 +1,13 @@
 import recipes from '../data/recipes.js'
 import { getCardComponent } from './components/card.js'
 import { DropdownFactory } from './components/dropdown.js'
-import { getAppliances, getIngredients, getUstensils } from './getData.js'
+import { getAppliances, getIngredients, getUstensils } from './utils/getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 
 import { searchBarListener, searchBarInputEngine } from './engines/searchbarEngine.js'
 import { dropdownsInputsListener } from './engines/dropdownTagsEngine.js'
 import { tagsEngine } from './engines/tagsEngine.js'
+import { SearchEngine } from './engines/engine.js'
 
 export function displayRecipes (recipesData) {
 
@@ -51,7 +52,11 @@ function displayDropdowns () {
     })
 }
 
+export const searchEngine = new SearchEngine ()
+
 export function launchSearch({props}) {
+
+    const searchEngine = new SearchEngine()
 
     const {useSearchBarInput, searchTerm} = props
 
@@ -62,9 +67,10 @@ export function launchSearch({props}) {
     }
     // search with tags + search-bar-input
     else {
-        let results = searchBarInputEngine(recipes, searchTerm)
-        results = tagsEngine(results)
-        displayRecipes(results)
+        searchEngine.setResultsFromSearchBar(searchTerm)
+        searchEngine.setResultsFromTags()
+        console.log('eng', searchEngine.results)
+        displayRecipes(searchEngine.results)
     }
 
 }

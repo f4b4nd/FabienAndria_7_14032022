@@ -1,5 +1,6 @@
 import { displayRecipes } from "../index.js"
 import { launchSearch } from "../index.js"
+import { searchEngine } from "../index.js"
 
 export function searchBarListener () {
     const searchBarInput = document.querySelector('#search-bar-input')
@@ -14,8 +15,8 @@ function handleSearchBarInputChange (event) {
         displayRecipes([])
         return
     }
-    const props = {useSearchBarInput: true, searchTerm}
-    launchSearch({props})
+
+    searchEngine.setResultsFromSearchBar(searchTerm)
 
 }
 
