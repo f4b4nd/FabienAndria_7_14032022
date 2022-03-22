@@ -7,7 +7,7 @@ export class SearchEngine {
 
     constructor () {
         this.results = recipes
-        this.tags = []
+        this.tags = {}
     }
 
     setResultsFromSearchBar (searchTerm) {
@@ -16,10 +16,30 @@ export class SearchEngine {
     }
 
     setResultsFromTags () {
-        this.results = tagsEngine(this.results)
+        this.results = tagsEngine(this.results, this.tags)
+        displayRecipes(this.results)
     }
 
-    addTag(tag) {
-        this.tags.push(tag)
+    addTag (tag) {
+        // tags grouped by origin
+        this.tags = {
+            ...this.tags,
+            [tag.origin] : [
+                ...this.tags[tag.origin] || [],
+                tag.value
+            ]
+        }
+        this.setResultsFromTags()
     }
+
+    removeTag(tag) {
+        this.tags[tag.origin] = this.tags[tag.origin].filter(value => value != tag.value)
+        this.setResultsFromTags()
+    }
+
+    resetSearch () {
+        this.results = recipes
+        this.tags = {}
+    }
+
 }

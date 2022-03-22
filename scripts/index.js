@@ -4,10 +4,11 @@ import { DropdownFactory } from './components/dropdown.js'
 import { getAppliances, getIngredients, getUstensils } from './utils/getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 
-import { searchBarListener, searchBarInputEngine } from './engines/searchbarEngine.js'
+import { searchBarListener } from './engines/searchbarEngine.js'
 import { dropdownsInputsListener } from './engines/dropdownTagsEngine.js'
-import { tagsEngine } from './engines/tagsEngine.js'
 import { SearchEngine } from './engines/engine.js'
+
+export const searchEngine = new SearchEngine ()
 
 export function displayRecipes (recipesData) {
 
@@ -50,29 +51,6 @@ function displayDropdowns () {
         dropdown.handleEvents()
         sectionDOM.appendChild(dropdownComponent)
     })
-}
-
-export const searchEngine = new SearchEngine ()
-
-export function launchSearch({props}) {
-
-    const searchEngine = new SearchEngine()
-
-    const {useSearchBarInput, searchTerm} = props
-
-    //  search only with tags
-    if (!useSearchBarInput) {
-        let results = tagsEngine(recipes)
-        displayRecipes(results)
-    }
-    // search with tags + search-bar-input
-    else {
-        searchEngine.setResultsFromSearchBar(searchTerm)
-        searchEngine.setResultsFromTags()
-        console.log('eng', searchEngine.results)
-        displayRecipes(searchEngine.results)
-    }
-
 }
 
 function init () {

@@ -1,6 +1,4 @@
-import { displayRecipes } from "../index.js"
-import { launchSearch } from "../index.js"
-import { searchEngine } from "../index.js"
+import { displayRecipes, searchEngine } from "../index.js"
 
 export function searchBarListener () {
     const searchBarInput = document.querySelector('#search-bar-input')
@@ -25,10 +23,13 @@ export function searchBarInputEngine (recipes, searchTerm) {
 
     const searchTermLowerCase = searchTerm.toLocaleLowerCase()
 
-    return recipes.filter(recipe => (
-        titleEngine(recipe, searchTermLowerCase) || ingredientEngine(recipe, searchTermLowerCase) || descriptionEngine(recipe, searchTermLowerCase)
-    ))
+    return recipes.filter(recipe => recipeMatches(recipe, searchTermLowerCase))
+
 }
+
+const recipeMatches = (recipe, searchTerm) => (
+    titleEngine(recipe, searchTerm) || ingredientEngine(recipe, searchTerm) || descriptionEngine(recipe, searchTerm)
+)
 
 /****/
 

@@ -1,6 +1,6 @@
 import { getTagComponent } from "../components/tag.js"
 import { DropdownFactory } from "../components/dropdown.js"
-import { displayRecipes, searchEngine, launchSearch } from "../index.js"
+import { searchEngine } from "../index.js"
 
 // from .dropdown__tags to #tags
 export function moveDropdownTagItemToTags () {
@@ -20,8 +20,7 @@ export function moveDropdownTagItemToTags () {
     const ul = this.closest('ul.dropdown__tags')
     ul.removeChild(this)
 
-    // launch search if search-bar input is not empty
-    updateSearchOnTagEvent()
+    // add tag to searchEngine
     searchEngine.addTag({value: this.getAttribute('value'), origin: this.getAttribute('data-origin')})
 
 }
@@ -51,26 +50,7 @@ export function moveTagToDropdown () {
     const tags = this.closest('ul')
     tags.removeChild(tag)
 
-    // launch search if search-bar input is not empty
-    updateSearchOnTagEvent()
-
-}
-
-function updateSearchOnTagEvent () {
-
-    const hasSelectedTags = document.querySelectorAll('#tags li').length > 0
-    const inputSearchValue = document.querySelector('#search-bar-input').value || null
-
-    // reset display if the last tag is removed and no search-bar-input
-    if (!hasSelectedTags && !inputSearchValue) {
-        displayRecipes([])
-        return
-    }
-
-    const props = {
-        useSearchBarInput: inputSearchValue,
-        searchTerm: inputSearchValue
-    }
-    launchSearch({props})
+    // remove tag from searchEngine
+    searchEngine.removeTag({value: tag.getAttribute('value'), origin: tag.getAttribute('data-origin')})
 
 }

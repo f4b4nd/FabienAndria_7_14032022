@@ -1,7 +1,7 @@
-import recipes from "../../data/recipes.js"
 import { DropdownFactory } from "../components/dropdown.js"
 import { getAppliances, getIngredients, getUstensils } from "../utils/getData.js"
 import clearHTMLNode from "../utils/clearHTML.js"
+import { searchEngine } from "../index.js"
 
 
 export function dropdownsInputsListener () {
@@ -39,12 +39,10 @@ function getTagsNotSelected (tags) {
 function setDropdownTags (dropdown, tags) {
 
     const dropdownTags = dropdown.querySelector('ul.dropdown__tags')
-    const tagsNotSelected = getTagsNotSelected(tags)
 
     clearHTMLNode(dropdownTags)
 
-    // display only tags that are not already selected
-    tagsNotSelected.forEach(tag => {
+    tags.forEach(tag => {
         const props = {
             tag: tag,
             dropdownID: dropdown.getAttribute('id'),
@@ -81,16 +79,19 @@ function dropdownTagsEngine (dropdown, searchTerm) {
 
 
 const ingredientEngine = (searchTerm) => {
+    const recipes = searchEngine.results
     const ingredients = getIngredients(recipes)
     return ingredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(searchTerm))
 }
 
 const applianceEngine = (searchTerm) => {
+    const recipes = searchEngine.results
     const appliances = getAppliances(recipes)
     return appliances.filter(appliance => appliance.toLocaleLowerCase().includes(searchTerm))
 }
 
 const ustensilEngine = (searchTerm) => {
+    const recipes = searchEngine.results
     const ustensils = getUstensils(recipes)
     return ustensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(searchTerm))
 }
