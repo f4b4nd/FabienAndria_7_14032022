@@ -28,8 +28,8 @@ const ingredientTagEngine = (recipe, tags) => {
     const ingredientTags = tags['ingredient-dropdown']
     if (!ingredientTags) return true
     const filteredIngredients = recipe.ingredients.filter(ingredient => ingredientTags.includes(ingredient.ingredient))
-    const recipeMatches = filteredIngredients.length >= ingredientTags.length
-    return recipeMatches
+    const recipeMatchesAllTags = filteredIngredients.length >= ingredientTags.length
+    return recipeMatchesAllTags
 }
 
 const applianceTagEngine = (recipe, tags) => {
@@ -44,6 +44,6 @@ const ustensilTagEngine = (recipe, tags) => {
     const ustensilTags = tags['ustensil-dropdown']
     if (!ustensilTags) return true
     const filteredUstensils = recipe.ustensils.filter(ustensil => ustensilTags.includes(ustensil))
-    const recipeMatches = filteredUstensils.length >= ustensilTags.length
-    return recipeMatches
+    const recipeMatchesAllTags = filteredUstensils.length >= ustensilTags.length
+    return recipeMatchesAllTags
 }
