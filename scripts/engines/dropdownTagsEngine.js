@@ -76,45 +76,47 @@ function dropdownTagsEngine (dropdown, searchTerm) {
 const ingredientEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const ingredients = getIngredients(recipes)
-    return ingredients.filter(ingredient => ingredientMatches(ingredient, searchTerm))
+    return ingredients.filter(ingredient => engineMatches({ingredient, searchTerm}))
 }
 
 const applianceEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const appliances = getAppliances(recipes)
-    return appliances.filter(appliance => applianceMatches(appliance, searchTerm))
+    return appliances.filter(appliance => engineMatches({appliance, searchTerm}))
 }
 
 const ustensilEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const ustensils = getUstensils(recipes)
-    return ustensils.filter(ustensil => ustensilMatches(ustensil, searchTerm))
+    return ustensils.filter(ustensil => engineMatches({ustensil, searchTerm}))
 }
 
 /****/
-const ingredientMatches = (ingredient, searchTerm) => {
-    const selectedTags = searchEngine.tags['ingredient-dropdown']
-    // prevent tag to be selected twice
-    if (selectedTags && selectedTags.includes(ingredient)) {
-        return false
-    }
-    return ingredient.toLocaleLowerCase().includes(searchTerm)
-}
+const engineMatches = (props) => {
 
-const applianceMatches = (appliance, searchTerm) => {
-    const selectedTags = searchEngine.tags['appliance-dropdown']
-    // prevent tag to be selected twice
-    if (selectedTags && selectedTags.includes(appliance)) {
-        return false
-    }
-    return appliance.toLocaleLowerCase().includes(searchTerm)
-}
+    let itemToMatch = ''
+    let selectedTags = null
 
-const ustensilMatches = (ustensil, searchTerm) => {
-    const selectedTags = searchEngine.tags['ustensil-dropdown']
-    // prevent tag to be selected twice
-    if (selectedTags && selectedTags.includes(ustensil)) {
+    if (props.ingredient) {
+        itemToMatch = props.ingredient
+        selectedTags = searchEngine.tags['ingredient-dropdown']
+    }
+    else if (props.appliance) {
+        itemToMatch = props.appliance
+        selectedTags = searchEngine.tags['appliance-dropdown']
+    }
+    else if (props.ustensil) {
+        itemToMatch = props.ustensil
+        selectedTags = searchEngine.tags['ustensil-dropdown']
+    }
+    else {
         return false
     }
-    return ustensil.toLocaleLowerCase().includes(searchTerm)
+
+    // prevent tag to be selected twice
+    if (selectedTags && selectedTags.includes(itemToMatch)) {
+        return false
+    }
+
+    return itemToMatch.toLocaleLowerCase().includes(props.searchTerm)
 }
