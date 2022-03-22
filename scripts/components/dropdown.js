@@ -33,7 +33,7 @@ export class DropdownFactory {
 
     getTagsInnerHTML () {
         return this.tags.reduce((acc, tag) => {
-            const props = {tag, dataColor: this.dataColor, dropdownID: this.dropdown.id}
+            const props = {tag, color: this.dataColor, origin: this.dropdown.id}
             return acc + DropdownFactory.getTagItemInnerHTML({props})
         }, '')
     }
@@ -42,9 +42,9 @@ export class DropdownFactory {
         return `
             <li 
                 value="${props.tag}"
-                class="${'li-' + props.dataColor}"
-                data-origin="${props.dropdownID}"
-                data-color="${props.dataColor}"
+                class="${'li-' + props.color}"
+                data-origin="${props.origin}"
+                data-color="${props.color}"
             > 
                 ${props.tag}
             </li>`

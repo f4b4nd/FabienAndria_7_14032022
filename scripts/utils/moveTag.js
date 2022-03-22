@@ -6,9 +6,9 @@ import { searchEngine } from "../index.js"
 export function moveDropdownTagItemToTags () {
 
     const props = {
-        value: this.getAttribute('value'),
-        dataOrigin : this.getAttribute('data-origin'),
-        dataColor: this.getAttribute('data-color'),
+        tagValue: this.getAttribute('value'),
+        origin : this.getAttribute('data-origin'),
+        color: this.getAttribute('data-color'),
     }
 
     // append to tags
@@ -21,7 +21,7 @@ export function moveDropdownTagItemToTags () {
     ul.removeChild(this)
 
     // add tag to searchEngine
-    searchEngine.addTag({value: this.getAttribute('value'), origin: this.getAttribute('data-origin')})
+    searchEngine.addTag({tagValue: this.getAttribute('value'), origin: this.getAttribute('data-origin')})
 
 }
 
@@ -33,9 +33,9 @@ export function moveTagToDropdown () {
     const dropdown = document.getElementById(dropdownID)
 
     const props = {
-        tag: tag.getAttribute('value'),
-        dropdownID: tag.getAttribute('data-origin'),
-        dataColor: tag.getAttribute('data-color'),
+        tagValue: tag.getAttribute('value'),
+        origin: tag.getAttribute('data-origin'),
+        color: tag.getAttribute('data-color'),
     }
 
     // add tag to dropdown__tags
@@ -51,6 +51,6 @@ export function moveTagToDropdown () {
     tags.removeChild(tag)
 
     // remove tag from searchEngine
-    searchEngine.removeTag({value: tag.getAttribute('value'), origin: tag.getAttribute('data-origin')})
+    searchEngine.removeTag({tagValue: tag.getAttribute('value'), origin: tag.getAttribute('data-origin')})
 
 }

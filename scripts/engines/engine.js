@@ -26,14 +26,14 @@ export class SearchEngine {
             ...this.tags,
             [tag.origin] : [
                 ...this.tags[tag.origin] || [],
-                tag.value
+                tag.tagValue
             ]
         }
         this.setResultsFromTags()
     }
 
     removeTag(tag) {
-        this.tags[tag.origin] = this.tags[tag.origin].filter(value => value != tag.value)
+        this.tags[tag.origin] = this.tags[tag.origin].filter(value => value != tag.tagValue)
         this.setResultsFromTags()
     }
 

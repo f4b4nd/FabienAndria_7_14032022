@@ -20,23 +20,17 @@ function handleDropdownInputChange (event) {
     if (searchTerm.length > 0) DropdownFactory.setDropdownActive(dropdown)
 
     if (searchTerm.length < 3) {
-        setDropdownTags(dropdown, [])
+        displayDropdownTags(dropdown, [])
         return
     }
 
     const tags = dropdownTagsEngine(dropdown, searchTerm)
 
-    setDropdownTags(dropdown, tags)
+    displayDropdownTags(dropdown, tags)
 
 }
 
-function getTagsNotSelected (tags) {
-    const selectedTags = document.querySelectorAll('#tags li')
-    const selectedTagsValues = [...selectedTags].map(tag => tag.getAttribute('value'))
-    return tags.filter(tag => !selectedTagsValues.includes(tag))
-}
-
-function setDropdownTags (dropdown, tags) {
+function displayDropdownTags (dropdown, tags) {
 
     const dropdownTags = dropdown.querySelector('ul.dropdown__tags')
 
@@ -45,8 +39,8 @@ function setDropdownTags (dropdown, tags) {
     tags.forEach(tag => {
         const props = {
             tag: tag,
-            dropdownID: dropdown.getAttribute('id'),
-            dataColor: dropdown.getAttribute('data-color')
+            origin: dropdown.getAttribute('id'),
+            color: dropdown.getAttribute('data-color')
         }
         const dropdownTag = DropdownFactory.getTagItemInnerHTML({props})
         dropdownTags.insertAdjacentHTML('beforeend', dropdownTag)
@@ -78,20 +72,49 @@ function dropdownTagsEngine (dropdown, searchTerm) {
 }
 
 
+/*** ENGINES */
 const ingredientEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const ingredients = getIngredients(recipes)
-    return ingredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(searchTerm))
+    return ingredients.filter(ingredient => ingredientMatches(ingredient, searchTerm))
 }
 
 const applianceEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const appliances = getAppliances(recipes)
-    return appliances.filter(appliance => appliance.toLocaleLowerCase().includes(searchTerm))
+    return appliances.filter(appliance => applianceMatches(appliance, searchTerm))
 }
 
 const ustensilEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const ustensils = getUstensils(recipes)
-    return ustensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(searchTerm))
+    return ustensils.filter(ustensil => ustensilMatches(ustensil, searchTerm))
+}
+
+/****/
+const ingredientMatches = (ingredient, searchTerm) => {
+    const selectedTags = searchEngine.tags['ingredient-dropdown']
+    // prevent tag to be selected twice
+    if (selectedTags && selectedTags.includes(ingredient)) {
+        return false
+    }
+    return ingredient.toLocaleLowerCase().includes(searchTerm)
+}
+
+const applianceMatches = (appliance, searchTerm) => {
+    const selectedTags = searchEngine.tags['appliance-dropdown']
+    // prevent tag to be selected twice
+    if (selectedTags && selectedTags.includes(appliance)) {
+        return false
+    }
+    return appliance.toLocaleLowerCase().includes(searchTerm)
+}
+
+const ustensilMatches = (ustensil, searchTerm) => {
+    const selectedTags = searchEngine.tags['ustensil-dropdown']
+    // prevent tag to be selected twice
+    if (selectedTags && selectedTags.includes(ustensil)) {
+        return false
+    }
+    return ustensil.toLocaleLowerCase().includes(searchTerm)
 }
