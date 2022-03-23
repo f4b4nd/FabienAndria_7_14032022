@@ -9,18 +9,19 @@ export function dropdownsInputsListener () {
     dropdowns.forEach(dropdown => {
         const input = dropdown.querySelector('input')
         const dropdownIcon = dropdown.querySelector('i')
-        input.addEventListener('input', handleDropdownInputChange)
+        input.addEventListener('input', updateDropdownTags)
         dropdownIcon.addEventListener('click', handleDropdownIconClick)
     })
 }
 
 function handleDropdownIconClick () {
+    // display results when click on dropdown icon
     const dropdown = this.closest('.dropdown')
     const tags = dropdownTagsEngine(dropdown, '')
     displayDropdownTags(dropdown, tags)
 }
 
-function handleDropdownInputChange (event) {
+function updateDropdownTags (event) {
 
     const dropdown = this.closest('.dropdown')
     const searchTerm = event.target.value
@@ -79,19 +80,34 @@ function dropdownTagsEngine (dropdown, searchTerm) {
 const ingredientEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const ingredients = getIngredients(recipes).sort()
-    /** TO COMPLETE */
+    const ingredientsFound = []
+    for (let i=0; i < ingredients.length; i++) {
+        let ingredient = ingredients[i]
+        if (engineMatches({ingredient, searchTerm})) ingredientsFound.push(ingredient)
+    }
+    return ingredientsFound
 }
 
 const applianceEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const appliances = getAppliances(recipes).sort()
-    /** TO COMPLETE */
+    const appliancesFound = []
+    for (let i=0; i < appliances.length; i++) {
+        let appliance = appliances[i]
+        if (engineMatches({appliance, searchTerm})) appliancesFound.push(appliance)
+    }
+    return appliancesFound
 }
 
 const ustensilEngine = (searchTerm) => {
     const recipes = searchEngine.results
     const ustensils = getUstensils(recipes).sort()
-    /** TO COMPLETE */
+    const ustensilsFound = []
+    for (let i=0; i < ustensils.length; i++) {
+        let ustensil = ustensils[i]
+        if (engineMatches({ustensil, searchTerm})) ustensilsFound.push(ustensil)
+    }
+    return ustensilsFound
 }
 
 /****/
