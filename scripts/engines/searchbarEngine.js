@@ -25,7 +25,7 @@ function handleSearchBarInputChange (event) {
         return
     }
 
-    searchEngine.setResultsFromSearchTerm()
+    searchEngine.setResults()
 
 }
 
