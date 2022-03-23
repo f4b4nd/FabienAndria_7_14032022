@@ -24,7 +24,17 @@ export function searchBarEngine (recipes, searchTerm) {
 
     const searchTermLowerCase = searchTerm.toLocaleLowerCase()
 
-    /** TO COMPLETE */
+    const results = []
+
+    for (let i=0; i < recipes.length; i++) {
+
+        let recipe = recipes[i]
+
+        if (recipeMatches(recipe, searchTermLowerCase)) results.push(recipe)
+
+    }
+
+    return results
 
 }
 
@@ -37,7 +47,19 @@ const recipeMatches = (recipe, searchTerm) => (
 const titleEngine = (recipe, searchTerm) => recipe.name.toLocaleLowerCase().includes(searchTerm)
 
 const ingredientEngine = (recipe, searchTerm) => {
-    /** TO COMPLETE */
+
+    const ingredients = recipe.ingredients
+    let i = 0
+    while (i < ingredients.length) {
+        let item = ingredients[i]
+        const ingredientMatches = item.ingredient.toLocaleLowerCase().includes(searchTerm)
+        if (ingredientMatches) {
+            return true
+        }
+        i++
+    }
+
+    return false
 }
 
 const descriptionEngine = (recipe, searchTerm) => recipe.description.toLocaleLowerCase().includes(searchTerm)
