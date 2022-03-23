@@ -8,26 +8,21 @@ import { SearchEngine } from './engines/engine.js'
 
 export const searchEngine = new SearchEngine ()
 
-export function displayRecipes (recipesData) {
+export function displayRecipes (results) {
 
     const resultsDOM = document.querySelector('#results')
     clearHTMLNode(resultsDOM)
 
-    recipesData.forEach(recipe => {
+    results.forEach(recipe => {
         const card = getCardComponent({props: recipe})
         resultsDOM.appendChild(card)
     })
 
 }
 
-export function resetSearchOnEmptyParameters (props) {
-
-    const tags = props.tags || document.querySelectorAll('#tags li')
-    const input = props.input || document.querySelector('#search-bar-input')
-
-    if (input.value === '' && tags.length === 0) {
-        searchEngine.resetSearch()
-    }
+export function displayNoResultsMessage (results) {
+    const errorMessage = document.querySelector('#no-results')
+    errorMessage.style.display = results.length === 0 ? 'block' : 'none'
 }
 
 function displayDropdowns () {

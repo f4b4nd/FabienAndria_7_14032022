@@ -1,7 +1,7 @@
 import recipes from "../../data/recipes.js"
 import { searchBarEngine } from "./searchbarEngine.js"
 import { tagsEngine } from "./tagsEngine.js"
-import { displayRecipes } from "../index.js"
+import { displayRecipes, displayNoResultsMessage } from "../index.js"
 
 export class SearchEngine {
 
@@ -12,20 +12,40 @@ export class SearchEngine {
     }
 
     setResults () {
-        if (!SearchEngine.objectIsEmpty(this.tags) && this.searchTerm !== '') {
+
+        if (this.preventSearch()) {
+            displayRecipes([])
+            return
+        }
+
+        if (!this.tagsAreEmpty() && this.searchTerm !== '') {
             this.setResultsFromTags()
             this.setResultsFromSearchTerm()
         }
-        else if (!SearchEngine.objectIsEmpty(this.tags) && this.searchTerm === '') {
+        else if (!this.tagsAreEmpty() && this.searchTerm === '') {
             this.setResultsFromTags()
         }
-        else if (SearchEngine.objectIsEmpty(this.tags) && this.searchTerm !== '') {
+        else if (this.tagsAreEmpty() && this.searchTerm !== '') {
             this.setResultsFromSearchTerm()
         }
         else {
             return
         }
+
         displayRecipes(this.results)
+        displayNoResultsMessage(this.results)
+    }
+
+    parametersAreEmpty () {
+        return this.tagsAreEmpty() && this.searchTerm === ''
+    }
+
+    preventSearch () {
+        return this.searchTerm.length < 3 && this.tagsAreEmpty()
+    }
+
+    tagsAreEmpty () {
+        return Object.values(this.tags).filter(arr => arr.length > 0).length === 0
     }
 
     setResultsFromSearchTerm () {
@@ -40,12 +60,16 @@ export class SearchEngine {
         this.searchTerm += char
     }
 
-    removeLastCharacterToSearchTerm () {
+    removeLastCharacterFromSearchTerm () {
         this.searchTerm = this.searchTerm.slice(0, -1)
-        this.results = recipes
-        if (this.searchTerm.length >= 3) {
-            displayRecipes(this.results)
+
+        if (this.parametersAreEmpty()) {
+            this.resetSearchEngine()
+            return
         }
+
+        this.resetResults()
+        this.setResults()
     }
 
     addTag (tag) {
@@ -62,18 +86,24 @@ export class SearchEngine {
 
     removeTag(tag) {
         this.tags[tag.origin] = this.tags[tag.origin].filter(value => value != tag.tagValue)
-        this.results = recipes
+
+        if (this.parametersAreEmpty()) {
+            this.resetSearchEngine()
+            return
+        }
+
+        this.resetResults()
         this.setResults()
     }
 
-    resetSearch () {
-        this.results = recipes
+    resetSearchEngine () {
+        this.resetResults()
         this.tags = {}
         displayRecipes([])
     }
 
-    static objectIsEmpty (obj) {
-        return Object.values(obj).filter(arr => arr.length > 0).length === 0
+    resetResults () {
+        this.results = recipes
     }
 
 }

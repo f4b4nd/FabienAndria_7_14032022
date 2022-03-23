@@ -1,6 +1,6 @@
 import { getTagComponent } from "../components/tag.js"
 import { DropdownFactory } from "../components/dropdown.js"
-import { resetSearchOnEmptyParameters, searchEngine } from "../index.js"
+import { searchEngine } from "../index.js"
 
 // from .dropdown__tags to #tags
 export function moveDropdownTagItemToTags () {
@@ -52,7 +52,5 @@ export function moveTagToDropdown () {
 
     // remove tag from searchEngine
     searchEngine.removeTag({tagValue: tag.getAttribute('value'), origin: tag.getAttribute('data-origin')})
-
-    resetSearchOnEmptyParameters({})
 
 }
