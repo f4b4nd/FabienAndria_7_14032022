@@ -9,18 +9,19 @@ export function dropdownsInputsListener () {
     dropdowns.forEach(dropdown => {
         const input = dropdown.querySelector('input')
         const dropdownIcon = dropdown.querySelector('i')
-        input.addEventListener('input', handleDropdownInputChange)
+        input.addEventListener('input', updateDropdownTags)
         dropdownIcon.addEventListener('click', handleDropdownIconClick)
     })
 }
 
 function handleDropdownIconClick () {
+    // display results when click on dropdown icon
     const dropdown = this.closest('.dropdown')
     const tags = dropdownTagsEngine(dropdown, '')
     displayDropdownTags(dropdown, tags)
 }
 
-function handleDropdownInputChange (event) {
+function updateDropdownTags (event) {
 
     const dropdown = this.closest('.dropdown')
     const searchTerm = event.target.value
