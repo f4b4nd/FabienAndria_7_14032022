@@ -98,8 +98,10 @@ export class SearchEngine {
 
     resetSearchEngine () {
         this.resetResults()
+        this.searchTerm = ''
         this.tags = {}
         displayRecipes([])
+        displayNoResultsMessage([false])
     }
 
     resetResults () {

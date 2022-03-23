@@ -7,6 +7,12 @@ export function searchBarListener () {
 
 function handleSearchBarInputChange (event) {
 
+    const inputValue = event.target.value
+    if (inputValue === '') {
+        searchEngine.searchTerm = ''
+        return
+    }
+
     const inputNewCharacter = event.data || null
 
     if (inputNewCharacter) {
