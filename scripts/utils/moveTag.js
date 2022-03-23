@@ -1,12 +1,14 @@
-import { getTagComponent } from "../component/tag.js"
-import { DropdownFactory } from "../component/dropdown.js"
+import { getTagComponent } from "../components/tag.js"
+import { DropdownFactory } from "../components/dropdown.js"
+import { searchEngine } from "../index.js"
 
-export function moveDropdownItemToTags () {
+// from .dropdown__tags to #tags
+export function moveDropdownTagItemToTags () {
 
     const props = {
-        value: this.getAttribute('value'),
-        dataOrigin : this.getAttribute('data-origin'),
-        dataColor: this.getAttribute('data-color'),
+        tagValue: this.getAttribute('value'),
+        origin : this.getAttribute('data-origin'),
+        color: this.getAttribute('data-color'),
     }
 
     // append to tags
@@ -15,34 +17,40 @@ export function moveDropdownItemToTags () {
     tags.appendChild(li)
 
     // remove from dropdown__options
-    const ul = this.closest('ul.dropdown__options')
+    const ul = this.closest('ul.dropdown__tags')
     ul.removeChild(this)
+
+    // add tag to searchEngine
+    searchEngine.addTag({tagValue: this.getAttribute('value'), origin: this.getAttribute('data-origin')})
 
 }
 
-
-export function moveTagToDropdownList () {
+// from #tags to .dropdown__tags
+export function moveTagToDropdown () {
 
     const tag = this.closest('.tag')
     const dropdownID = tag.getAttribute('data-origin')
     const dropdown = document.getElementById(dropdownID)
 
     const props = {
-        optionData: tag.getAttribute('value'),
-        dropdownID: tag.getAttribute('data-origin'),
-        dataColor: tag.getAttribute('data-color'),
+        tag: tag.getAttribute('value'),
+        origin: tag.getAttribute('data-origin'),
+        color: tag.getAttribute('data-color'),
     }
 
-    // add tag to dropdown__options
-    const optionInnerHTML = DropdownFactory.getOptionItemInnerHTML({props})
-    const dropdownOptions = dropdown.querySelector('.dropdown__options')
-    dropdownOptions.insertAdjacentHTML('beforeend', optionInnerHTML)
+    // add tag to dropdown__tags
+    const tagInnerHTML = DropdownFactory.getTagItemInnerHTML({props})
+    const dropdownTags = dropdown.querySelector('.dropdown__tags')
+    dropdownTags.insertAdjacentHTML('beforeend', tagInnerHTML)
 
     // restore eventlistener
-    DropdownFactory.handleClickOnListItems(dropdown)
+    DropdownFactory.handleClickOnDropdownTags(dropdown)
 
     // remove tag from tags
     const tags = this.closest('ul')
     tags.removeChild(tag)
+
+    // remove tag from searchEngine
+    searchEngine.removeTag({tagValue: tag.getAttribute('value'), origin: tag.getAttribute('data-origin')})
 
 }

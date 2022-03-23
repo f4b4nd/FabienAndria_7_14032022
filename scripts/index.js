@@ -1,17 +1,28 @@
-import recipes from '../data/recipes.js'
-import { getCardComponent } from './component/card.js'
-import { DropdownFactory } from './component/dropdown.js'
-import { getIngredients, getAppliances, getUstensils } from './getData.js'
+import { getCardComponent } from './components/card.js'
+import { DropdownFactory } from './components/dropdown.js'
+import clearHTMLNode from './utils/clearHTML.js'
 
-function displayResults () {
+import { searchBarListener } from './engines/searchbarEngine.js'
+import { dropdownsInputsListener } from './engines/dropdownTagsEngine.js'
+import { SearchEngine } from './engines/engine.js'
+
+export const searchEngine = new SearchEngine ()
+
+export function displayRecipes (results) {
 
     const resultsDOM = document.querySelector('#results')
+    clearHTMLNode(resultsDOM)
 
-    recipes.forEach(recipe => {
+    results.forEach(recipe => {
         const card = getCardComponent({props: recipe})
         resultsDOM.appendChild(card)
     })
 
+}
+
+export function displayNoResultsMessage (results) {
+    const errorMessage = document.querySelector('#no-results')
+    errorMessage.style.display = results.length === 0 ? 'block' : 'none'
 }
 
 function displayDropdowns () {
@@ -20,19 +31,19 @@ function displayDropdowns () {
             id: 'ingredient-dropdown',
             label: 'Ingrédient',
             dataColor: 'primary',
-            optionsDatas: getIngredients(recipes).sort()
+            tags: []
         },
         {
             id: 'appliance-dropdown',
             label: 'Appareil',
             dataColor: 'success',
-            optionsDatas: getAppliances(recipes).sort()
+            tags: []
         },
         {
             id: 'ustensil-dropdown',
             label: 'Ustensile',
             dataColor: 'danger',
-            optionsDatas: getUstensils(recipes).sort()
+            tags: []
         }
     ]
 
@@ -45,10 +56,10 @@ function displayDropdowns () {
     })
 }
 
-
 function init () {
-    displayResults()
     displayDropdowns()
+    searchBarListener()
+    dropdownsInputsListener()
 }
 
 init ()

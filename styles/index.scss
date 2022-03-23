@@ -57,7 +57,11 @@ main {
     gap: 2em 1em;
 }
 
-
+#no-results {
+    display: none;
+    text-align: center;
+    font-size: 1.2em;
+}
 
 @media screen and (max-width: $sm-maxwidth) {
     main {

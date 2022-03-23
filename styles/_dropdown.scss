@@ -11,11 +11,11 @@ button.dropdown {
 
     overflow: visible;
 
-    &:not(.dropdown--active) ul.dropdown__options {
+    &:not(.dropdown--active) ul.dropdown__tags{
         display: none;
     }
 
-    ul.dropdown__options {
+    ul.dropdown__tags {
         z-index: 2;
         display: grid;
         align-items: center;
@@ -37,7 +37,7 @@ button.dropdown {
         }
     }
 
-    .dropdown__header, .dropdown__options {
+    .dropdown__header, .dropdown__tags {
         width: 100%;
         padding: 1em;
     }
@@ -88,7 +88,7 @@ button.dropdown {
         background-color: $blue;
     }
 
-    .dropdown__options {
+    .dropdown__tags {
         background-color: $blue;
     }
 }
@@ -100,7 +100,7 @@ button.dropdown {
         background-color: $green;
     }
 
-    .dropdown__options {
+    .dropdown__tags {
         background-color: $green;
     }
 }
@@ -112,7 +112,7 @@ button.dropdown {
         background-color: $red;
     }
 
-    .dropdown__options {
+    .dropdown__tags {
         background-color: $red;
     }
 }
