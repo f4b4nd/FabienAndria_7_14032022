@@ -8,8 +8,16 @@ export function dropdownsInputsListener () {
     const dropdowns = document.querySelectorAll('.dropdown')
     dropdowns.forEach(dropdown => {
         const input = dropdown.querySelector('input')
+        const dropdownIcon = dropdown.querySelector('i')
         input.addEventListener('input', handleDropdownInputChange)
+        dropdownIcon.addEventListener('click', handleDropdownIconClick)
     })
+}
+
+function handleDropdownIconClick () {
+    const dropdown = this.closest('.dropdown')
+    const tags = dropdownTagsEngine(dropdown, '')
+    displayDropdownTags(dropdown, tags)
 }
 
 function handleDropdownInputChange (event) {
@@ -18,11 +26,6 @@ function handleDropdownInputChange (event) {
     const searchTerm = event.target.value
 
     if (searchTerm.length > 0) DropdownFactory.setDropdownActive(dropdown)
-
-    if (searchTerm.length < 3) {
-        displayDropdownTags(dropdown, [])
-        return
-    }
 
     const tags = dropdownTagsEngine(dropdown, searchTerm)
 
@@ -75,19 +78,19 @@ function dropdownTagsEngine (dropdown, searchTerm) {
 /*** ENGINES */
 const ingredientEngine = (searchTerm) => {
     const recipes = searchEngine.results
-    const ingredients = getIngredients(recipes)
+    const ingredients = getIngredients(recipes).sort()
     return ingredients.filter(ingredient => engineMatches({ingredient, searchTerm}))
 }
 
 const applianceEngine = (searchTerm) => {
     const recipes = searchEngine.results
-    const appliances = getAppliances(recipes)
+    const appliances = getAppliances(recipes).sort()
     return appliances.filter(appliance => engineMatches({appliance, searchTerm}))
 }
 
 const ustensilEngine = (searchTerm) => {
     const recipes = searchEngine.results
-    const ustensils = getUstensils(recipes)
+    const ustensils = getUstensils(recipes).sort()
     return ustensils.filter(ustensil => engineMatches({ustensil, searchTerm}))
 }
 

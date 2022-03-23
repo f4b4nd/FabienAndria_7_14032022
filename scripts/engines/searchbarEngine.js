@@ -9,18 +9,27 @@ function handleSearchBarInputChange (event) {
 
     resetSearchOnEmptyParameters({input: this})
 
-    const searchTerm = event.target.value
+    const inputNewCharacter = event.data || null
 
-    if (searchTerm.length < 3) {
+    if (inputNewCharacter) {
+        searchEngine.addCharacterToSearchTerm(inputNewCharacter)
+    }
+    else {
+        searchEngine.removeLastCharacterToSearchTerm()
+    }
+
+    const inputValue = event.target.value
+
+    if (inputValue.length < 3) {
         displayRecipes([])
         return
     }
 
-    searchEngine.setResultsFromSearchBar(searchTerm)
+    searchEngine.setResultsFromSearchTerm()
 
 }
 
-export function searchBarInputEngine (recipes, searchTerm) {
+export function searchBarEngine (recipes, searchTerm) {
 
     const searchTermLowerCase = searchTerm.toLocaleLowerCase()
 

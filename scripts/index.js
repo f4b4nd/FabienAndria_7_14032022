@@ -1,7 +1,5 @@
-import recipes from '../data/recipes.js'
 import { getCardComponent } from './components/card.js'
 import { DropdownFactory } from './components/dropdown.js'
-import { getAppliances, getIngredients, getUstensils } from './utils/getData.js'
 import clearHTMLNode from './utils/clearHTML.js'
 
 import { searchBarListener } from './engines/searchbarEngine.js'
@@ -28,7 +26,6 @@ export function resetSearchOnEmptyParameters (props) {
     const input = props.input || document.querySelector('#search-bar-input')
 
     if (input.value === '' && tags.length === 0) {
-        console.log('reset')
         searchEngine.resetSearch()
     }
 }
@@ -68,9 +65,6 @@ function init () {
     displayDropdowns()
     searchBarListener()
     dropdownsInputsListener()
-    console.log(getIngredients(recipes).sort())
-    console.log(getAppliances(recipes).sort())
-    console.log(getUstensils(recipes).sort())
 }
 
 init ()

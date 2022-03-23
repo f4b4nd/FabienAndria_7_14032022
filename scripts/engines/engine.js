@@ -1,5 +1,5 @@
 import recipes from "../../data/recipes.js"
-import { searchBarInputEngine } from "./searchbarEngine.js"
+import { searchBarEngine } from "./searchbarEngine.js"
 import { tagsEngine } from "./tagsEngine.js"
 import { displayRecipes } from "../index.js"
 
@@ -8,15 +8,26 @@ export class SearchEngine {
     constructor () {
         this.results = recipes
         this.tags = {}
+        this.searchTerm = ''
     }
 
-    setResultsFromSearchBar (searchTerm) {
-        this.results = searchBarInputEngine(this.results, searchTerm)
+    setResultsFromSearchTerm () {
+        this.results = searchBarEngine(this.results, this.searchTerm)
         displayRecipes(this.results)
     }
 
     setResultsFromTags () {
         this.results = tagsEngine(this.results, this.tags)
+        displayRecipes(this.results)
+    }
+
+    addCharacterToSearchTerm (char) {
+        this.searchTerm += char
+    }
+
+    removeLastCharacterToSearchTerm () {
+        this.searchTerm = this.searchTerm.slice(0, -1)
+        this.results = recipes
         displayRecipes(this.results)
     }
 
@@ -34,6 +45,7 @@ export class SearchEngine {
 
     removeTag(tag) {
         this.tags[tag.origin] = this.tags[tag.origin].filter(value => value != tag.tagValue)
+        this.results = recipes
         this.setResultsFromTags()
     }
 
