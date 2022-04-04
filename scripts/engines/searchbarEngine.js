@@ -33,9 +33,15 @@ export function searchBarEngine (recipes, searchTerm) {
 
 }
 
-const recipeMatches = (recipe, searchTerm) => (
-    titleEngine(recipe, searchTerm) || ingredientEngine(recipe, searchTerm) || descriptionEngine(recipe, searchTerm)
-)
+const recipeMatches = (recipe, searchTerm) => {
+    const titleOrDescriptionMatches = titleEngine(recipe, searchTerm) || descriptionEngine(recipe, searchTerm)
+
+    if (titleOrDescriptionMatches) {
+        return true
+    }
+    return ingredientEngine(recipe, searchTerm) ;
+
+}
 
 /****/
 
